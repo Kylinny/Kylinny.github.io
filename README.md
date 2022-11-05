@@ -1,7 +1,7 @@
 # Junyi's website
 **Welcome** 
 
-#### You can checkout my website [here](https://www.junyiyao.com/)
+#### You can checkout my website [here](http://kylinny.github.io/)
 
 ---
 
