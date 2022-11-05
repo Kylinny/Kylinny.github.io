@@ -9,16 +9,16 @@ baseurl: Kylinny.github.io
 # Title of the Site
 title: Junyi Yao
 # Description of the Site
-description: A customizable Jekyll portfolio theme
+description: WELCOME
 # URL of Image of the Site
 site-image: /WhatATheme/assets/images/meta.jpg
 # Keywords of the Site
 site-keywords: Junyi, Personal, Website
 # URL for the Image of custom Favicon
-favicon-url: https://ibb.co/LrJNSNj
+favicon-url: https://i.ibb.co/42Y1W1v/android-chrome-512x512.png
 
 # URL of the Image of Custom Hero Image (i.e., the image in the background of the very first section of the Homepage)
-heroimage: https://ibb.co/f8zhXkv
+heroimage: https://i.ibb.co/q03tDN5/DSC03659.jpg
 
 # Social Media and Contact
 # If you don't want to use any icon, you can leave them blank.
