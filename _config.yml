@@ -1,13 +1,13 @@
 # WhatATheme
 markdown: kramdown
-
+remote_theme: thedevslot/WhatATheme
 # URL of the Site
 url: 'https://kylinny.github.io/'
 # Base URL of the Site (i.e., Name of the Repository in which the Site is hosted)
 baseurl: Kylinny.github.io
 
 # Title of the Site
-title: What A Theme
+title: Junyi Yao
 # Description of the Site
 description: A customizable Jekyll portfolio theme
 # URL of Image of the Site
