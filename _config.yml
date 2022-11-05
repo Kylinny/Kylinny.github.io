@@ -2,18 +2,18 @@
 markdown: kramdown
 
 # URL of the Site
-url: ''
+url: 'https://kylinny.github.io/'
 # Base URL of the Site (i.e., Name of the Repository in which the Site is hosted)
-baseurl: 
+baseurl: Kylinny.github.io
 
 # Title of the Site
-title: What A Theme
+title: Hi there! It's Junyi Yao
 # Description of the Site
-description: A customizable Jekyll portfolio theme
+description: Welcome
 # URL of Image of the Site
-site-image: /WhatATheme/assets/images/meta.jpg
+site-image: /WhatATheme/assets/images/
 # Keywords of the Site
-site-keywords: Site, Template, Theme
+site-keywords: Junyi, Personal, Website
 # URL for the Image of custom Favicon
 favicon-url: 
 
@@ -22,23 +22,15 @@ heroimage: https://images.pexels.com/photos/220444/pexels-photo-220444.jpeg?auto
 
 # Social Media and Contact
 # If you don't want to use any icon, you can leave them blank.
-email: thedevslot@gmail.com
-facebook_username: thedevslot
-twitter_username: thedevslot
-instagram_username: thedevslot
-linkedin_username: thedevslot
-github_username:  thedevslot
-youtube_channel_id: UCk_93NXYP-U_AOB5GfWlOow
-reddit_username: /
-behance_username: /
-dribbble_username: /
-spotify_username: /
+email: junyi.yao.real@outlook.com
+
+instagram_username: not_junyi
+linkedin_username: Junyi Yao
+github_username:  Kylinny
 
 # Google Analytics
 google-analytics: UA-163806439-1
 
-# Disqus
-disqus-shortname: thedevslot
 
 # Name of the Author
 author-name: TheDevsLot
