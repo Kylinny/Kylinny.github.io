@@ -48,7 +48,7 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 
 ### Main content order
 
-1. **Full-screen SF globe** — the first content scene after the welcome dissolve; it shows `HEY, I'M JUNYI` and `Currently working at Uber in San Francisco 🌁`.
+1. **Full-screen SF globe** — the first content scene after the welcome dissolve; it shows `HEY, I'M JUNYI` and `Currently working at Uber in San Francisco 🌁`. The globe should feel like a night-time Earth horizon: a subtle animated star field, city-light shimmer, blue atmospheric rim, and a floating San Francisco locator connected to the surface by a fine line.
 2. **IDENTITY / PROFILE** — personal photograph, expanded profile, location/current focus/contact channel.
 3. **JOURNEY.LOG** — the chronological record of places, fused directly with the interactive globe.
 4. **Footer** — compact archive signature and return-to-top link.
@@ -76,6 +76,7 @@ The globe is a signature interaction, but it belongs after the personal introduc
 ### Globe interaction
 
 - A 3D-style or canvas globe supports drag to rotate and scroll/pinch to zoom where practical.
+- The first SF view uses a cinematic low-orbit composition rather than a wireframe globe. Animation comes from the star field, city-light shimmer, atmosphere, and floating locator; it remains lightweight enough for a static GitHub Pages site.
 - Locations appear as restrained glowing markers.
 - Hover should reveal a place name/coordinate.
 - Clicking a marker or geographic region moves the visitor to a dedicated location page, e.g. `/places/tokyo`.

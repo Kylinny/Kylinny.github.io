@@ -5,6 +5,118 @@ document.querySelector('#enter-site').addEventListener('click', enter);
 window.addEventListener('wheel', (event) => { if (event.deltaY > 5 && !entry.classList.contains('is-gone')) enter(); }, { passive: true });
 window.addEventListener('touchmove', () => { if (!entry.classList.contains('is-gone')) enter(); }, { passive: true, once: true });
 
+const canvas = document.querySelector('#globe');
+const ctx = canvas.getContext('2d');
+const shell = document.querySelector('#globe-shell');
+const locations = [
+  { name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194 },
+  { name: 'ROME', lat: 41.9028, lon: 12.4964 },
+];
+let rotation = 2.1366; // San Francisco faces the viewer on first load.
+let dragging = false;
+let lastX = 0;
+let stars = [];
+let cityLights = [];
+
+const random = (seed) => {
+  const value = Math.sin(seed * 9283.31) * 46271.41;
+  return value - Math.floor(value);
+};
+
+function makeAtmosphere() {
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
+  stars = Array.from({ length: Math.max(130, Math.floor((w * h) / 6500)) }, (_, index) => ({
+    x: random(index + 1) * w, y: random(index + 600) * h * .72,
+    size: random(index + 1200) * 1.35 + .25, phase: random(index + 1800) * Math.PI * 2,
+  }));
+  const clusters = [
+    [-122.4, 37.8, 42], [-118.2, 34, 28], [-74, 40.7, 40], [-87.6, 41.8, 19],
+    [-0.1, 51.5, 38], [2.3, 48.8, 30], [12.5, 41.9, 25], [13.4, 52.5, 23],
+    [28.9, 41, 22], [37.6, 55.7, 18], [139.7, 35.6, 42], [126.9, 37.5, 31],
+    [121.5, 31.2, 38], [116.4, 39.9, 31], [77.2, 28.6, 26], [151.2, -33.9, 24],
+    [-46.6, -23.5, 23], [31.2, 30, 18], [55.3, 25.2, 18], [103.8, 1.3, 20],
+  ];
+  cityLights = clusters.flatMap(([lon, lat, count], cluster) => Array.from({ length: count }, (_, index) => ({
+    lat: lat + (random(cluster * 200 + index) - .5) * 7,
+    lon: lon + (random(cluster * 400 + index) - .5) * 10,
+    size: random(cluster * 700 + index) * 1.45 + .32,
+    phase: random(cluster * 900 + index) * Math.PI * 2,
+  })));
+}
+
+function resize() {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = canvas.clientWidth * dpr;
+  canvas.height = canvas.clientHeight * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  makeAtmosphere();
+}
+
+function point(lat, lon, radius, cx, cy, spin = rotation) {
+  const latitude = lat * Math.PI / 180;
+  const longitude = lon * Math.PI / 180 + spin;
+  const x = Math.cos(latitude) * Math.sin(longitude);
+  const y = Math.sin(latitude);
+  const z = Math.cos(latitude) * Math.cos(longitude);
+  return { x: cx + radius * x, y: cy - radius * y, z };
+}
+
+function drawStars(width, height, now) {
+  const nebula = ctx.createRadialGradient(width * .72, height * .08, 0, width * .72, height * .08, width * .55);
+  nebula.addColorStop(0, 'rgba(43, 84, 182, .26)'); nebula.addColorStop(.4, 'rgba(17, 42, 105, .1)'); nebula.addColorStop(1, 'rgba(3, 8, 21, 0)');
+  ctx.fillStyle = nebula; ctx.fillRect(0, 0, width, height);
+  stars.forEach((star) => {
+    const alpha = .22 + (Math.sin(now * .0012 + star.phase) + 1) * .2;
+    ctx.fillStyle = `rgba(194, 224, 255, ${alpha})`;
+    ctx.beginPath(); ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2); ctx.fill();
+  });
+}
+
+function drawGlobe(width, height, now) {
+  const radius = Math.max(width * .52, height * .82);
+  const cx = width * .58;
+  const cy = height * 1.08;
+  const glow = ctx.createRadialGradient(cx, cy - radius * .88, radius * .1, cx, cy - radius * .88, radius * 1.25);
+  glow.addColorStop(0, 'rgba(92, 180, 255, .24)'); glow.addColorStop(.32, 'rgba(28, 93, 174, .11)'); glow.addColorStop(1, 'rgba(2, 8, 18, 0)');
+  ctx.fillStyle = glow; ctx.fillRect(0, 0, width, height);
+  ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, radius, 0, Math.PI * 2); ctx.clip();
+  const ocean = ctx.createRadialGradient(cx - radius * .16, cy - radius * .72, radius * .05, cx, cy, radius * 1.1);
+  ocean.addColorStop(0, '#163d71'); ocean.addColorStop(.44, '#081c3b'); ocean.addColorStop(1, '#01040a');
+  ctx.fillStyle = ocean; ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
+  cityLights.forEach((light) => {
+    const p = point(light.lat, light.lon, radius, cx, cy);
+    if (p.z < -.04) return;
+    const brightness = Math.max(0, p.z) * (.45 + (Math.sin(now * .0018 + light.phase) + 1) * .25);
+    ctx.fillStyle = `rgba(255, 230, 166, ${brightness})`;
+    ctx.beginPath(); ctx.arc(p.x, p.y, light.size + brightness, 0, Math.PI * 2); ctx.fill();
+  });
+  const shadow = ctx.createLinearGradient(cx - radius, cy, cx + radius, cy - radius * .3);
+  shadow.addColorStop(0, 'rgba(0, 0, 0, .77)'); shadow.addColorStop(.42, 'rgba(0, 0, 0, .06)'); shadow.addColorStop(1, 'rgba(0, 4, 12, .25)');
+  ctx.fillStyle = shadow; ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2); ctx.restore();
+  ctx.beginPath(); ctx.arc(cx, cy, radius, Math.PI * 1.03, Math.PI * 1.97);
+  ctx.strokeStyle = 'rgba(132, 220, 255, .78)'; ctx.lineWidth = 2; ctx.shadowColor = '#6edbff'; ctx.shadowBlur = 15; ctx.stroke(); ctx.shadowBlur = 0;
+  return { radius, cx, cy };
+}
+
+function drawSanFrancisco(planet, now) {
+  const sf = point(37.7749, -122.4194, planet.radius, planet.cx, planet.cy);
+  if (sf.z < 0) return;
+  const labelY = sf.y - 80 - Math.sin(now * .0022) * 6;
+  ctx.strokeStyle = 'rgba(140, 242, 255, .78)'; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+  ctx.beginPath(); ctx.moveTo(sf.x, sf.y); ctx.lineTo(sf.x, labelY + 8); ctx.stroke(); ctx.setLineDash([]);
+  const pulse = 4 + (Math.sin(now * .003) + 1) * 2;
+  ctx.beginPath(); ctx.arc(sf.x, sf.y, pulse, 0, Math.PI * 2); ctx.fillStyle = '#b8fbff'; ctx.shadowColor = '#76efff'; ctx.shadowBlur = 18; ctx.fill(); ctx.shadowBlur = 0;
+  ctx.fillStyle = '#b9f6ff'; ctx.font = '10px "DM Mono", monospace'; ctx.fillText('SAN FRANCISCO', sf.x + 12, labelY + 4);
+  ctx.fillStyle = 'rgba(185, 246, 255, .65)'; ctx.font = '8px "DM Mono", monospace'; ctx.fillText('HOME BASE', sf.x + 12, labelY + 18);
+}
+
+function draw(now = 0) {
+  const width = canvas.clientWidth; const height = canvas.clientHeight;
+  ctx.clearRect(0, 0, width, height); drawStars(width, height, now); drawSanFrancisco(drawGlobe(width, height, now), now);
+  requestAnimationFrame(draw);
+}
+
 const toast = document.querySelector('#place-toast');
 let toastTimer;
 document.querySelectorAll('[data-place]').forEach((button) => button.addEventListener('click', () => {
@@ -13,21 +125,11 @@ document.querySelectorAll('[data-place]').forEach((button) => button.addEventLis
   const target = locations.find((location) => location.name === button.dataset.place);
   if (target) rotation = -target.lon * Math.PI / 180;
   toast.textContent = `OPENING: ${button.dataset.place} — FIELD NOTES COMING NEXT`;
-  toast.classList.add('show');
-  clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
+  toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
 }));
 
-const canvas = document.querySelector('#globe');
-const ctx = canvas.getContext('2d');
-const shell = document.querySelector('#globe-shell');
-// Center the first scene on San Francisco (122.4194° W).
-let rotation = 2.1366, dragging = false, lastX = 0;
-const locations = [{ name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194 }, { name: 'ROME', lat: 41.9028, lon: 12.4964 }];
-function size() { const dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = canvas.clientWidth * dpr; canvas.height = canvas.clientHeight * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
-function point(lat, lon, r, cx, cy) { const la = lat * Math.PI / 180; const lo = lon * Math.PI / 180 + rotation; const x = Math.cos(la) * Math.sin(lo); const y = Math.sin(la); const z = Math.cos(la) * Math.cos(lo); return { x: cx + r * x, y: cy - r * y, z }; }
-function draw() { const w = canvas.clientWidth, h = canvas.clientHeight, cx = w / 2, cy = h / 2, r = Math.min(w, h) * .37; ctx.clearRect(0, 0, w, h); const glow = ctx.createRadialGradient(cx, cy, r*.2, cx, cy, r*1.6); glow.addColorStop(0, 'rgba(75,185,255,.2)'); glow.addColorStop(1, 'rgba(11,37,80,0)'); ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
-  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.fillStyle='#061a34';ctx.fill();ctx.strokeStyle='rgba(151,222,255,.5)';ctx.lineWidth=1;ctx.stroke();ctx.save();ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);ctx.clip();
-  for(let lat=-75;lat<=75;lat+=15){ctx.beginPath();for(let lon=-180;lon<=180;lon+=3){const p=point(lat,lon,r,cx,cy);lon===-180?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y)}ctx.strokeStyle='rgba(118,208,255,.18)';ctx.stroke()}
-  for(let lon=-165;lon<=180;lon+=15){ctx.beginPath();for(let lat=-90;lat<=90;lat+=3){const p=point(lat,lon,r,cx,cy);lat===-90?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y)}ctx.strokeStyle='rgba(118,208,255,.18)';ctx.stroke()}
-  locations.forEach(l=>{const p=point(l.lat,l.lon,r,cx,cy);if(p.z>0){ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fillStyle='#8df6ff';ctx.shadowColor='#8df6ff';ctx.shadowBlur=14;ctx.fill();ctx.shadowBlur=0;ctx.font='10px DM Mono';ctx.fillText(l.name,p.x+9,p.y-9)}});ctx.restore();requestAnimationFrame(draw);}
-shell.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;shell.setPointerCapture(e.pointerId)});shell.addEventListener('pointermove',e=>{if(dragging){rotation+=(e.clientX-lastX)*.012;lastX=e.clientX}});shell.addEventListener('pointerup',()=>dragging=false);window.addEventListener('resize',size);size();draw();
+shell.addEventListener('pointerdown', (event) => { dragging = true; lastX = event.clientX; shell.setPointerCapture(event.pointerId); });
+shell.addEventListener('pointermove', (event) => { if (dragging) { rotation += (event.clientX - lastX) * .008; lastX = event.clientX; } });
+shell.addEventListener('pointerup', () => { dragging = false; });
+window.addEventListener('resize', resize);
+resize(); draw();
