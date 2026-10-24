@@ -28,7 +28,7 @@ const locations = [
 const stories = [
   {
     id: 'sf', name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194,
-    kicker: 'HOME BASE', timestamp: '2024.10—PRESENT', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁',
+    kicker: 'HOME BASE', timestamp: '2024.10—PRESENT', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁 And I LOVE fogs',
     cover: 'assets/images/sf-00-golden-gate.jpg',
     gallery: ['assets/images/sf-00-golden-gate.jpg', 'assets/images/sf-01.jpg', 'assets/images/sf-02.jpg', 'assets/images/sf-03.jpg', 'assets/images/sf-gallery-01.jpg', 'assets/images/sf-gallery-02.jpg', 'assets/images/sf-gallery-03.jpg', 'assets/images/sf-gallery-04.jpg', 'assets/images/sf-gallery-05.jpg'],
     tags: ['HOME BASE', 'UBER', 'NOW'],
