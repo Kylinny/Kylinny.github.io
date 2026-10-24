@@ -111,7 +111,7 @@ Each same-page card should contain:
 - Current globe is a lightweight custom canvas interaction to avoid a heavy dependency for the first release.
 - Rome story timestamp: `2025.09`. Its cover is `assets/images/profile-rome.jpg` (St. Peter's Square); Gallery Mode includes it and `assets/images/rome-colosseum.jpg` (Colosseum). The card is image-led, with no descriptive body copy.
 - Photos in story cards and Gallery Mode must preserve their original aspect ratio and complete composition; never use cover-cropping or a visible photo frame. The single cover should float directly in the semi-transparent card. Additional photos belong in Gallery Mode, without an automatic dissolve sequence.
-- San Francisco story timestamp: `2024.10—PRESENT`.
+- San Francisco story timestamps: `2023.05—08` and `2024.10—PRESENT`.
 - San Francisco cover image: `assets/images/sf-00-golden-gate.jpg` (foggy Golden Gate Bridge). Its Gallery Mode includes that cover, `assets/images/sf-01.jpg` through `assets/images/sf-03.jpg`, and `assets/images/sf-gallery-01.jpg` through `assets/images/sf-gallery-05.jpg`.
 - Placeholder text that must be replaced before public release:
   - biography and current location
