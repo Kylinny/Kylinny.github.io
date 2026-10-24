@@ -30,7 +30,7 @@ const stories = [
   {
     id: 'rome', name: 'ROME', lat: 41.9028, lon: 12.4964,
     kicker: 'FIELD IMAGE / ITALY', body: 'A moment by the fountain at St. Peter’s Square — one of the first images in this growing archive.',
-    image: 'assets/images/profile-rome.jpg', tags: ['ROME', 'PHOTOGRAPHY', 'ARCHIVE'],
+    images: ['assets/images/profile-rome.jpg', 'assets/images/rome-colosseum.jpg'], tags: ['ROME', 'PHOTOGRAPHY', 'ARCHIVE'],
   },
 ];
 let rotation = 2.1366; // San Francisco faces the viewer on first load.
@@ -164,16 +164,33 @@ const storyTitle = document.querySelector('#story-title');
 const storyImage = document.querySelector('#story-image');
 const storyBody = document.querySelector('#story-body');
 const storyTags = document.querySelector('#story-tags');
+let storyImageTimer;
+function showStoryImage(images, index) {
+  storyImage.classList.add('is-dissolving');
+  setTimeout(() => {
+    storyImage.src = images[index];
+    storyImage.alt = `Field image from Rome, ${index + 1} of ${images.length}`;
+    storyImage.hidden = false;
+    requestAnimationFrame(() => storyImage.classList.remove('is-dissolving'));
+  }, 360);
+}
 function openStory(story) {
+  clearInterval(storyImageTimer);
   storyKicker.textContent = story.kicker;
   storyTitle.textContent = story.name;
   storyBody.textContent = story.body;
   storyTags.replaceChildren(...story.tags.map((tag) => { const label = document.createElement('span'); label.textContent = tag; return label; }));
-  if (story.image) { storyImage.src = story.image; storyImage.alt = `Field image from ${story.name}`; storyImage.hidden = false; }
-  else { storyImage.hidden = true; storyImage.removeAttribute('src'); }
+  if (story.images?.length) {
+    let imageIndex = 0;
+    showStoryImage(story.images, imageIndex);
+    if (story.images.length > 1) storyImageTimer = setInterval(() => {
+      imageIndex = (imageIndex + 1) % story.images.length;
+      showStoryImage(story.images, imageIndex);
+    }, 4600);
+  } else { storyImage.hidden = true; storyImage.removeAttribute('src'); }
   storyCard.classList.add('open'); storyCard.setAttribute('aria-hidden', 'false');
 }
-function closeStory() { storyCard.classList.remove('open'); storyCard.setAttribute('aria-hidden', 'true'); }
+function closeStory() { clearInterval(storyImageTimer); storyCard.classList.remove('open'); storyCard.setAttribute('aria-hidden', 'true'); }
 storyClose.addEventListener('click', closeStory);
 
 shell.addEventListener('pointerdown', (event) => { dragging = true; lastX = event.clientX; shell.setPointerCapture(event.pointerId); });

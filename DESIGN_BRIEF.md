@@ -103,7 +103,7 @@ Each same-page card should contain:
 - Static site, compatible with GitHub Pages and the repository's existing Jekyll build workflow.
 - Homepage assets: `index.html`, `styles.css`, `script.js`.
 - Current globe is a lightweight custom canvas interaction to avoid a heavy dependency for the first release.
-- Current portrait asset: `assets/images/profile-rome.jpg` — black-and-white image taken in Rome. It is shown in the Rome story card.
+- Rome story images: `assets/images/profile-rome.jpg` (St. Peter's Square) and `assets/images/rome-colosseum.jpg` (Colosseum). When the Rome card is open, the two images dissolve between one another automatically.
 - Placeholder text that must be replaced before public release:
   - biography and current location
   - dated journey entries
