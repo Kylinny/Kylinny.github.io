@@ -23,3 +23,5 @@
 @media (max-width:800px) { .globe-timeline { top:auto; bottom:7vh; right:20px; width:145px; transform:none; }.globe-timeline>p { display:none; }.timeline-item { padding-bottom:13px; padding-left:16px; }.timeline-item span { font-size:8px; }.timeline-item b { font-size:10px; }.timeline-line { top:3px; bottom:15px; }.story-card { left:20px; top:auto; bottom:20px; width:calc(100vw - 40px); transform:translateY(120%); }.story-card.open { transform:translateY(0); }.gallery-view { padding:90px 20px 40px; }.gallery-back { top:20px; left:20px; }.gallery-grid { columns:1; }.nav { height:65px; }.wordmark { font-size:22px; } }
 @keyframes typing-caret { 0%, 45% { opacity: 1; } 46%, 100% { opacity: 0; } }
 @keyframes chevron-fall { 0%,100% { transform:translateY(-4px) rotate(45deg); opacity:.25; } 50% { transform:translateY(4px) rotate(45deg); opacity:1; } }
+
+@media (min-width:801px) { .gallery-grid { columns:280px; } }
