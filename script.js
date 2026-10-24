@@ -42,6 +42,7 @@ let lastX = 0;
 let stars = [];
 let cityLights = [];
 let markerPositions = [];
+let landArcs = [];
 
 const random = (seed) => {
   const value = Math.sin(seed * 9283.31) * 46271.41;
@@ -87,6 +88,30 @@ function point(lat, lon, radius, cx, cy, spin = rotation) {
   return { x: cx + radius * x, y: cy - radius * y, z };
 }
 
+async function loadLandContours() {
+  try {
+    const topology = await fetch('assets/data/land-110m.json').then((response) => response.json());
+    const scale = topology.transform.scale;
+    const translate = topology.transform.translate;
+    const decodeArc = (arcIndex) => {
+      const source = topology.arcs[arcIndex < 0 ? -arcIndex - 1 : arcIndex];
+      let x = 0; let y = 0;
+      const coordinates = source.map(([deltaX, deltaY]) => {
+        x += deltaX; y += deltaY;
+        return [x * scale[0] + translate[0], y * scale[1] + translate[1]];
+      });
+      return arcIndex < 0 ? coordinates.reverse() : coordinates;
+    };
+    const collectArcs = (geometry) => {
+      if (geometry.type === 'GeometryCollection') return geometry.geometries.flatMap(collectArcs);
+      return geometry.arcs.flat(Infinity);
+    };
+    landArcs = [...new Set(collectArcs(topology.objects.land))].map(decodeArc);
+  } catch {
+    // The night globe remains usable if the optional local outline data is unavailable.
+  }
+}
+
 function drawStars(width, height, now) {
   const nebula = ctx.createRadialGradient(width * .72, height * .08, 0, width * .72, height * .08, width * .55);
   nebula.addColorStop(0, 'rgba(43, 84, 182, .26)'); nebula.addColorStop(.4, 'rgba(17, 42, 105, .1)'); nebula.addColorStop(1, 'rgba(3, 8, 21, 0)');
@@ -115,6 +140,19 @@ function drawGlobe(width, height, now) {
     const brightness = Math.max(0, p.z) * (.45 + (Math.sin(now * .0018 + light.phase) + 1) * .25);
     ctx.fillStyle = `rgba(255, 230, 166, ${brightness})`;
     ctx.beginPath(); ctx.arc(p.x, p.y, light.size + brightness, 0, Math.PI * 2); ctx.fill();
+  });
+  ctx.strokeStyle = 'rgba(162, 215, 243, .52)';
+  ctx.lineWidth = .65;
+  landArcs.forEach((arc) => {
+    let connected = false;
+    ctx.beginPath();
+    arc.forEach(([lon, lat]) => {
+      const p = point(lat, lon, radius, cx, cy);
+      if (p.z < -.02) { connected = false; return; }
+      if (!connected) { ctx.moveTo(p.x, p.y); connected = true; }
+      else ctx.lineTo(p.x, p.y);
+    });
+    ctx.stroke();
   });
   const shadow = ctx.createLinearGradient(cx - radius, cy, cx + radius, cy - radius * .3);
   shadow.addColorStop(0, 'rgba(0, 0, 0, .77)'); shadow.addColorStop(.42, 'rgba(0, 0, 0, .06)'); shadow.addColorStop(1, 'rgba(0, 4, 12, .25)');
@@ -226,3 +264,4 @@ document.addEventListener('pointerdown', (event) => {
 });
 window.addEventListener('resize', resize);
 resize(); draw();
+loadLandContours();

@@ -77,6 +77,7 @@ The globe is the primary interaction and the opening site experience after the w
 
 - A 3D-style or canvas globe supports drag to rotate and scroll/pinch to zoom where practical.
 - The first SF view uses a cinematic low-orbit composition rather than a wireframe globe. Animation comes from the star field, city-light shimmer, atmosphere, and floating locator; it remains lightweight enough for a static GitHub Pages site.
+- Render real global land contours in a fine, low-contrast silver-blue line. Show continental coastlines only, never a dense grid or political country-boundary map.
 - Locations appear as restrained glowing markers.
 - Hover should reveal a place name/coordinate.
 - Clicking a marker opens the place's content card in the current view.
