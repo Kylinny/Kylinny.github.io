@@ -54,6 +54,7 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 
 ## Content principles
 
+- When Junyi supplies English copy, preserve its personality while flagging clear grammar issues or more natural phrasing before implementing it.
 - Personal introduction stays concise, human, and first-person.
 - Current introduction: “Hey, I’m Junyi. Currently working at Uber in SF.”
 - The site should feel like an evolving record, not a finished corporate profile.
