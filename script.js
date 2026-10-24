@@ -328,7 +328,7 @@ function showStoryImage(story) {
 }
 function openStory(story) {
   activeStory = story;
-  storyKicker.textContent = story.kicker && story.timestamp ? `${story.kicker} / ${story.timestamp}` : (story.kicker || story.timestamp || '');
+  storyKicker.textContent = [story.country, story.timestamp].filter(Boolean).join(' / ');
   storyTitle.textContent = story.name;
   storyBody.textContent = story.body || '';
   storyBody.hidden = !story.body;
