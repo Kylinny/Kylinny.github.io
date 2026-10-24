@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="profile.css" />
+    <link rel="stylesheet" href="reboot.css" />
   </head>
   <body>
     <div class="grain"></div>
@@ -18,12 +19,13 @@
       <div class="welcome-wrap" aria-label="Welcome">
         <span class="welcome-shadow">WELCOME</span>
         <h1 class="welcome" data-text="WELCOME">WELCOME</h1>
-        <span class="byte byte-a">01101001</span>
-        <span class="byte byte-b">SYN / 01</span>
-        <span class="byte byte-c">11000010</span>
+        <span class="beacon beacon-a"></span><span class="beacon beacon-b"></span><span class="beacon beacon-c"></span>
+        <span class="byte byte-a">JY // 001</span>
+        <span class="byte byte-b">SIGNAL FOUND</span>
+        <span class="byte byte-c">37.7749° N</span>
       </div>
-      <button class="enter" id="enter-site"><span>ENTER ARCHIVE</span><i>↘</i></button>
-      <p class="scroll-prompt">OR SCROLL TO INITIALIZE</p>
+      <button class="enter" id="enter-site" aria-label="Scroll to enter"><span>SCROLL TO ENTER</span><i>↓</i></button>
+      <p class="scroll-prompt">INITIALIZE / 01</p>
     </div>
 
     <main id="archive" aria-hidden="true">
@@ -36,13 +38,16 @@
       </nav>
 
       <section class="hero" id="top">
-        <p class="eyebrow">001 — INDEPENDENT HUMAN / DIGITAL EXPLORER</p>
-        <h2>MAKING SENSE<br />OF THE <em>UNKNOWN.</em></h2>
-        <div class="hero-footer">
-          <p>A personal index of work, observations,<br />and coordinates worth remembering.</p>
-          <a class="down-link" href="#identity">SCROLL TO DECODE <span>↓</span></a>
+        <div class="globe-shell hero-globe" id="globe-shell">
+          <canvas id="globe" aria-label="Interactive globe centered on San Francisco"></canvas>
+          <span class="globe-hint">DRAG TO ROTATE · SELECT A SIGNAL</span>
         </div>
-        <div class="orbital-mark" aria-hidden="true"><span></span><span></span><b></b></div>
+        <div class="sf-intro">
+          <p class="eyebrow">CURRENT COORDINATE / 37.7749° N, 122.4194° W</p>
+          <h2>HEY, I’M<br /><em>JUNYI.</em></h2>
+          <p>Currently working at Uber in San Francisco.</p>
+        </div>
+        <a class="down-link hero-down" href="#identity">DECODE PROFILE <span>↓</span></a>
       </section>
 
       <section class="identity section" id="identity">
@@ -71,9 +76,10 @@
         <div class="section-index">/ 02</div>
         <div class="section-title"><p>JOURNEY.LOG</p><span>CHRONOLOGICAL COORDINATE ARCHIVE_</span></div>
         <div class="world-grid">
-          <div class="globe-shell" id="globe-shell">
-            <canvas id="globe" aria-label="Interactive decorative globe"></canvas>
-            <span class="globe-hint">DRAG TO ROTATE · CLICK A SIGNAL</span>
+          <div class="journey-panel" aria-hidden="true">
+            <span class="journey-orbit orbit-one"></span><span class="journey-orbit orbit-two"></span>
+            <span class="journey-point point-sf">SF</span><span class="journey-point point-rome">RM</span>
+            <p>ROUTE<br />ARCHIVE</p>
           </div>
           <div class="world-copy">
             <p class="eyebrow">SELECT A POINT IN TIME</p>

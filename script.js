@@ -20,7 +20,8 @@ document.querySelectorAll('[data-place]').forEach((button) => button.addEventLis
 const canvas = document.querySelector('#globe');
 const ctx = canvas.getContext('2d');
 const shell = document.querySelector('#globe-shell');
-let rotation = -0.65, dragging = false, lastX = 0;
+// Center the first scene on San Francisco (122.4194° W).
+let rotation = 2.1366, dragging = false, lastX = 0;
 const locations = [{ name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194 }, { name: 'ROME', lat: 41.9028, lon: 12.4964 }];
 function size() { const dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = canvas.clientWidth * dpr; canvas.height = canvas.clientHeight * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
 function point(lat, lon, r, cx, cy) { const la = lat * Math.PI / 180; const lo = lon * Math.PI / 180 + rotation; const x = Math.cos(la) * Math.sin(lo); const y = Math.sin(la); const z = Math.cos(la) * Math.cos(lo); return { x: cx + r * x, y: cy - r * y, z }; }

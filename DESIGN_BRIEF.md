@@ -8,10 +8,10 @@ Create a personal website that feels like entering a living digital archive rath
 
 The visitor journey is intentional:
 
-1. Enter a short, cinematic welcome screen.
-2. Transition into a concise personal introduction.
-3. Explore experience, field notes, travel, and photography.
-4. Use an interactive globe to discover locations and open deeper location pages.
+1. Enter a short, cinematic welcome signal.
+2. Scroll through a dissolve transition into a full-screen globe centered on San Francisco.
+3. Reveal the concise personal introduction beside the globe.
+4. Explore field notes, travel, photography, and deeper location pages.
 
 ## Visual language
 
@@ -40,16 +40,16 @@ The visitor journey is intentional:
 The site opens as a full-screen entry experience, not a conventional navigation header.
 
 - Main word: `WELCOME`.
-- The word floats with very subtle distortion / chromatic glitch layers.
-- Surround it with sparse floating byte strings and technical labels.
+- The word is paired with a small number of blinking signal lights, sparse technical labels, and restrained byte strings.
 - Background is black-to-deep-navy, with a faint perspective grid.
-- Visitor can click **ENTER ARCHIVE** or scroll to enter the main site.
-- Entering should feel like initialization: a smooth fade/transition, not a hard navigation change.
+- A blinking down arrow stays in the lower-right corner to guide the visitor.
+- Visitor can click the arrow or scroll to enter the main site.
+- Entering should dissolve the welcome screen into the globe view rather than navigate to a conventional hero.
 
 ### Main content order
 
-1. **Hero / archive declaration** — a short, strong statement; do not crowd the top of the page with biography.
-2. **IDENTITY / PROFILE** — personal photograph, short introduction, location/current focus/contact channel.
+1. **Full-screen SF globe** — the first content scene after the welcome dissolve; it shows `HEY, I'M JUNYI` and the one-line Uber/SF introduction.
+2. **IDENTITY / PROFILE** — personal photograph, expanded profile, location/current focus/contact channel.
 3. **JOURNEY.LOG** — the chronological record of places, fused directly with the interactive globe.
 4. **Footer** — compact archive signature and return-to-top link.
 
