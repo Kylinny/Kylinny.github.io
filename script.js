@@ -185,6 +185,9 @@ function drawGlobe(width, height, now) {
 
 function drawAtmosphericGlint(planet, now) {
   const phase = (now / 18000) * Math.PI * 2;
+  const labelRadius = planet.radius + 25;
+  const labelX = planet.cx + Math.cos(phase) * labelRadius;
+  const labelY = planet.cy + Math.sin(phase) * labelRadius - 10;
   ctx.save();
   ctx.beginPath();
   ctx.arc(planet.cx, planet.cy, planet.radius + 4, phase - .17, phase + .17);
@@ -193,6 +196,11 @@ function drawAtmosphericGlint(planet, now) {
   ctx.shadowColor = '#7eeeff';
   ctx.shadowBlur = 16;
   ctx.stroke();
+  ctx.shadowBlur = 10;
+  ctx.fillStyle = 'rgba(202, 248, 255, .78)';
+  ctx.font = '8px "DM Mono", monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('THIS IS A LIVING EARTH, ROTATING AT ITS REAL-WORLD PACE.', labelX, labelY);
   ctx.restore();
 }
 
