@@ -110,7 +110,7 @@ Each same-page card should contain:
 - Rome story timestamp: `2025.09`. Story images: `assets/images/profile-rome.jpg` (St. Peter's Square) and `assets/images/rome-colosseum.jpg` (Colosseum). The card is image-led, with no descriptive body copy; the two images dissolve between one another automatically.
 - Photos in story cards must preserve their original aspect ratio and complete composition; never use cover-cropping or a visible photo frame. They should float directly in the semi-transparent card and dissolve between images.
 - San Francisco story timestamp: `2024.10—PRESENT`.
-- San Francisco story images: `assets/images/sf-01.jpg`, `assets/images/sf-02.jpg`, and `assets/images/sf-03.jpg`; dissolve automatically while the SF card is open.
+- San Francisco story images begin with `assets/images/sf-00-golden-gate.jpg` (foggy Golden Gate Bridge), followed by `assets/images/sf-01.jpg`, `assets/images/sf-02.jpg`, and `assets/images/sf-03.jpg`; dissolve automatically while the SF card is open.
 - Placeholder text that must be replaced before public release:
   - biography and current location
   - dated journey entries

@@ -29,7 +29,7 @@ const stories = [
   {
     id: 'sf', name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194,
     kicker: 'HOME BASE', timestamp: '2024.10—PRESENT', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁',
-    images: ['assets/images/sf-01.jpg', 'assets/images/sf-02.jpg', 'assets/images/sf-03.jpg'], tags: ['HOME BASE', 'UBER', 'NOW'],
+    images: ['assets/images/sf-00-golden-gate.jpg', 'assets/images/sf-01.jpg', 'assets/images/sf-02.jpg', 'assets/images/sf-03.jpg'], tags: ['HOME BASE', 'UBER', 'NOW'],
   },
   {
     id: 'rome', name: 'ROME', lat: 41.9028, lon: 12.4964,
