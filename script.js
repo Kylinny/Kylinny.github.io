@@ -57,7 +57,7 @@ const stories = [
       'assets/images/stl-web/IMG_4398.jpg',
       'assets/images/stl-web/IMG_4419.jpg',
     ],
-    tags: ['WASHINGTON UNIVERSITY', 'MIDWEST', 'GATEWAY ARCH'],
+    tags: ['WASHINGTON UNIVERSITY', 'MIDWEST', '桃源'],
   },
   {
     id: 'sf', name: 'SAN FRANCISCO', country: 'USA', lat: 37.7749, lon: -122.4194,
