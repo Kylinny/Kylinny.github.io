@@ -29,7 +29,7 @@ const stories = [
   },
   {
     id: 'rome', name: 'ROME', lat: 41.9028, lon: 12.4964,
-    kicker: 'FIELD IMAGE / ITALY', timestamp: '2025.09', body: 'A moment by the fountain at St. Peter’s Square — one of the first images in this growing archive.',
+    kicker: 'FIELD IMAGE / ITALY', timestamp: '2025.09',
     images: ['assets/images/profile-rome.jpg', 'assets/images/rome-colosseum.jpg'], tags: ['ROME', 'PHOTOGRAPHY', 'ARCHIVE'],
   },
 ];
@@ -206,6 +206,7 @@ const storyCard = document.querySelector('#story-card');
 const storyKicker = document.querySelector('#story-kicker');
 const storyTitle = document.querySelector('#story-title');
 const storyImage = document.querySelector('#story-image');
+const storyImageFrame = document.querySelector('#story-image-frame');
 const storyBody = document.querySelector('#story-body');
 const storyTags = document.querySelector('#story-tags');
 let storyImageTimer;
@@ -214,7 +215,7 @@ function showStoryImage(images, index) {
   setTimeout(() => {
     storyImage.src = images[index];
     storyImage.alt = `Field image from Rome, ${index + 1} of ${images.length}`;
-    storyImage.hidden = false;
+    storyImageFrame.hidden = false;
     requestAnimationFrame(() => storyImage.classList.remove('is-dissolving'));
   }, 360);
 }
@@ -222,7 +223,8 @@ function openStory(story) {
   clearInterval(storyImageTimer);
   storyKicker.textContent = story.timestamp ? `${story.kicker} / ${story.timestamp}` : story.kicker;
   storyTitle.textContent = story.name;
-  storyBody.textContent = story.body;
+  storyBody.textContent = story.body || '';
+  storyBody.hidden = !story.body;
   storyTags.replaceChildren(...story.tags.map((tag) => { const label = document.createElement('span'); label.textContent = tag; return label; }));
   if (story.images?.length) {
     let imageIndex = 0;
@@ -231,7 +233,7 @@ function openStory(story) {
       imageIndex = (imageIndex + 1) % story.images.length;
       showStoryImage(story.images, imageIndex);
     }, 4600);
-  } else { storyImage.hidden = true; storyImage.removeAttribute('src'); }
+  } else { storyImageFrame.hidden = true; storyImage.removeAttribute('src'); }
   storyCard.classList.add('open'); storyCard.setAttribute('aria-hidden', 'false');
   document.querySelector('.hero').classList.add('story-open');
   document.querySelectorAll('.timeline-item').forEach((item) => item.classList.toggle('active', item.dataset.story === story.id));

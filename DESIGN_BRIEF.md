@@ -105,8 +105,8 @@ Each same-page card should contain:
 - Static site, compatible with GitHub Pages and the repository's existing Jekyll build workflow.
 - Homepage assets: `index.html`, `styles.css`, `script.js`.
 - Current globe is a lightweight custom canvas interaction to avoid a heavy dependency for the first release.
-- Rome story timestamp: `2025.09`. Story images: `assets/images/profile-rome.jpg` (St. Peter's Square) and `assets/images/rome-colosseum.jpg` (Colosseum). When the Rome card is open, the two images dissolve between one another automatically.
-- Photos in story cards must preserve their original aspect ratio and complete composition; never use cover-cropping. Scale an entire image down only when needed to fit the viewport.
+- Rome story timestamp: `2025.09`. Story images: `assets/images/profile-rome.jpg` (St. Peter's Square) and `assets/images/rome-colosseum.jpg` (Colosseum). The card is image-led, with no descriptive body copy; the two images dissolve between one another automatically.
+- Photos in story cards must preserve their original aspect ratio and complete composition; never use cover-cropping. Place them in a fixed rectangular 4:3 frame with deep-blue letterboxing when necessary.
 - San Francisco story timestamp: `2024.10—PRESENT`.
 - Placeholder text that must be replaced before public release:
   - biography and current location
