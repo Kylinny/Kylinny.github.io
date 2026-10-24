@@ -1,5 +1,9 @@
 /* The site is one navigable globe; content opens in cards instead of new pages. */
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 8; background: linear-gradient(180deg, rgba(2,7,17,.88), transparent); border: 0; }
+.welcome-shadow { display: none; }
+.welcome { min-width: 7.25ch; text-align: left; }
+.welcome::before { display: none; }
+.welcome::after { content: '▌'; position: static; inset: auto; display: inline; margin-left: .08em; color: var(--cyan); -webkit-text-stroke: 0; clip-path: none; opacity: 1; animation: typing-caret .75s steps(1, end) infinite; }
 .nav-links, .status { display: none; }
 .hero { min-height: 100vh; height: 100vh; }
 .hero-globe { top: 0; }
@@ -12,3 +16,4 @@
 .story-card h2 { margin: 0 0 13px; font-size: 32px; line-height: .95; letter-spacing: -.06em; }.story-card>p:not(.story-kicker) { color: #b9c4d3; line-height: 1.5; font-size: 14px; }
 .story-card img { width: 100%; max-height: 245px; margin: 5px 0 4px; object-fit: cover; filter: grayscale(1) contrast(1.08); }.story-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }.story-tags span { border: 1px solid var(--line); padding:5px 7px; color:var(--muted); font:9px "DM Mono",monospace; letter-spacing:.06em; }
 @media (max-width:800px) { .story-card { left:20px; bottom:20px; width:calc(100vw - 40px); }.nav { height:65px; }.wordmark { font-size:22px; } }
+@keyframes typing-caret { 0%, 45% { opacity: 1; } 46%, 100% { opacity: 0; } }

@@ -1,5 +1,14 @@
 const entry = document.querySelector('#entry-screen');
 const archive = document.querySelector('#archive');
+const welcome = document.querySelector('.welcome');
+const welcomeText = welcome.dataset.text;
+let typedCharacters = 0;
+function typeWelcome() {
+  typedCharacters += 1;
+  welcome.textContent = welcomeText.slice(0, typedCharacters);
+  if (typedCharacters < welcomeText.length) setTimeout(typeWelcome, 130);
+}
+setTimeout(typeWelcome, 500);
 const enter = () => { entry.classList.add('is-gone'); archive.setAttribute('aria-hidden', 'false'); };
 document.querySelector('#enter-site').addEventListener('click', enter);
 window.addEventListener('wheel', (event) => { if (event.deltaY > 5 && !entry.classList.contains('is-gone')) enter(); }, { passive: true });

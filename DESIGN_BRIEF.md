@@ -39,7 +39,7 @@ The visitor journey is intentional:
 
 The site opens as a full-screen entry experience, not a conventional navigation header.
 
-- Main word: `WELCOME`.
+- Main word: `WELCOME`, typed out one character at a time with a blinking terminal-style caret; it must not appear as a complete word on load.
 - The word is paired with a small number of blinking lights, sparse archive labels, and restrained byte strings.
 - Background is black-to-deep-navy, with a faint perspective grid.
 - A blinking down arrow stays in the lower-right corner to guide the visitor.
@@ -66,6 +66,7 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 - Each story point contains a city/region, date or date range, one-line memory or theme, image(s), tags, and optional Google Maps links.
 - Selecting a point opens a same-page overlay card. It never navigates to a new detail page.
 - Current real story points are San Francisco (intro) and Rome (field image); add more only when Junyi supplies the actual travel data.
+- Group story points primarily by **region** (for example North America, Europe, East Asia) because visitors explore spatially. Use themes such as photography, food, work, walking, and architecture as secondary tags within each place card.
 
 ## Globe, travel, and field notes
 
