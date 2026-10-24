@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="profile.css" />
     <link rel="stylesheet" href="reboot.css" />
+    <link rel="stylesheet" href="single-globe.css" />
   </head>
   <body>
     <div class="grain"></div>
@@ -96,6 +97,14 @@
 
       <footer><span>© 2026 JUNYI</span><span>BUILT AS A LIVING ARCHIVE</span><a href="#top">BACK TO TOP ↑</a></footer>
     </main>
+    <aside class="story-card" id="story-card" aria-live="polite" aria-hidden="true">
+      <button class="story-close" id="story-close" aria-label="Close story">×</button>
+      <p class="story-kicker" id="story-kicker"></p>
+      <h2 id="story-title"></h2>
+      <img id="story-image" alt="" hidden />
+      <p id="story-body"></p>
+      <div class="story-tags" id="story-tags"></div>
+    </aside>
     <div class="place-toast" id="place-toast" role="status"></div>
     <script src="script.js"></script>
   </body>

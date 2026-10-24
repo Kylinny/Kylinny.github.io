@@ -12,11 +12,24 @@ const locations = [
   { name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194 },
   { name: 'ROME', lat: 41.9028, lon: 12.4964 },
 ];
+const stories = [
+  {
+    id: 'sf', name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194,
+    kicker: 'HOME BASE / NOW', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁',
+    tags: ['HOME BASE', 'UBER', 'NOW'],
+  },
+  {
+    id: 'rome', name: 'ROME', lat: 41.9028, lon: 12.4964,
+    kicker: 'FIELD IMAGE / ITALY', body: 'A moment by the fountain at St. Peter’s Square — one of the first images in this growing archive.',
+    image: 'assets/images/profile-rome.jpg', tags: ['ROME', 'PHOTOGRAPHY', 'ARCHIVE'],
+  },
+];
 let rotation = 2.1366; // San Francisco faces the viewer on first load.
 let dragging = false;
 let lastX = 0;
 let stars = [];
 let cityLights = [];
+let markerPositions = [];
 
 const random = (seed) => {
   const value = Math.sin(seed * 9283.31) * 46271.41;
@@ -99,21 +112,28 @@ function drawGlobe(width, height, now) {
   return { radius, cx, cy };
 }
 
-function drawSanFrancisco(planet, now) {
-  const sf = point(37.7749, -122.4194, planet.radius, planet.cx, planet.cy);
-  if (sf.z < 0) return;
-  const labelY = sf.y - 80 - Math.sin(now * .0022) * 6;
-  ctx.strokeStyle = 'rgba(140, 242, 255, .78)'; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
-  ctx.beginPath(); ctx.moveTo(sf.x, sf.y); ctx.lineTo(sf.x, labelY + 8); ctx.stroke(); ctx.setLineDash([]);
-  const pulse = 4 + (Math.sin(now * .003) + 1) * 2;
-  ctx.beginPath(); ctx.arc(sf.x, sf.y, pulse, 0, Math.PI * 2); ctx.fillStyle = '#b8fbff'; ctx.shadowColor = '#76efff'; ctx.shadowBlur = 18; ctx.fill(); ctx.shadowBlur = 0;
-  ctx.fillStyle = '#b9f6ff'; ctx.font = '10px "DM Mono", monospace'; ctx.fillText('SAN FRANCISCO', sf.x + 12, labelY + 4);
-  ctx.fillStyle = 'rgba(185, 246, 255, .65)'; ctx.font = '8px "DM Mono", monospace'; ctx.fillText('HOME BASE', sf.x + 12, labelY + 18);
+function drawStoryPoints(planet, now) {
+  markerPositions = [];
+  stories.forEach((story, index) => {
+    const marker = point(story.lat, story.lon, planet.radius, planet.cx, planet.cy);
+    if (marker.z < 0) return;
+    const lift = 72 + Math.sin(now * .0022 + index) * 7;
+    const labelY = marker.y - lift;
+    ctx.strokeStyle = 'rgba(140, 242, 255, .72)'; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+    ctx.beginPath(); ctx.moveTo(marker.x, marker.y); ctx.lineTo(marker.x, labelY + 8); ctx.stroke(); ctx.setLineDash([]);
+    const pulse = 4 + (Math.sin(now * .003 + index) + 1) * 2;
+    ctx.beginPath(); ctx.arc(marker.x, marker.y, pulse, 0, Math.PI * 2);
+    ctx.fillStyle = '#b8fbff'; ctx.shadowColor = '#76efff'; ctx.shadowBlur = 18; ctx.fill(); ctx.shadowBlur = 0;
+    ctx.fillStyle = '#b9f6ff'; ctx.font = '10px "DM Mono", monospace'; ctx.fillText(story.name, marker.x + 12, labelY + 4);
+    ctx.fillStyle = 'rgba(185, 246, 255, .65)'; ctx.font = '8px "DM Mono", monospace'; ctx.fillText('OPEN NOTE', marker.x + 12, labelY + 18);
+    markerPositions.push({ story, x: marker.x, y: marker.y });
+  });
 }
 
 function draw(now = 0) {
   const width = canvas.clientWidth; const height = canvas.clientHeight;
-  ctx.clearRect(0, 0, width, height); drawStars(width, height, now); drawSanFrancisco(drawGlobe(width, height, now), now);
+  if (!dragging) rotation += .00003;
+  ctx.clearRect(0, 0, width, height); drawStars(width, height, now); drawStoryPoints(drawGlobe(width, height, now), now);
   requestAnimationFrame(draw);
 }
 
@@ -128,8 +148,31 @@ document.querySelectorAll('[data-place]').forEach((button) => button.addEventLis
   toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
 }));
 
+const storyCard = document.querySelector('#story-card');
+const storyClose = document.querySelector('#story-close');
+const storyKicker = document.querySelector('#story-kicker');
+const storyTitle = document.querySelector('#story-title');
+const storyImage = document.querySelector('#story-image');
+const storyBody = document.querySelector('#story-body');
+const storyTags = document.querySelector('#story-tags');
+function openStory(story) {
+  storyKicker.textContent = story.kicker;
+  storyTitle.textContent = story.name;
+  storyBody.textContent = story.body;
+  storyTags.replaceChildren(...story.tags.map((tag) => { const label = document.createElement('span'); label.textContent = tag; return label; }));
+  if (story.image) { storyImage.src = story.image; storyImage.alt = `Field image from ${story.name}`; storyImage.hidden = false; }
+  else { storyImage.hidden = true; storyImage.removeAttribute('src'); }
+  storyCard.classList.add('open'); storyCard.setAttribute('aria-hidden', 'false');
+}
+function closeStory() { storyCard.classList.remove('open'); storyCard.setAttribute('aria-hidden', 'true'); }
+storyClose.addEventListener('click', closeStory);
+
 shell.addEventListener('pointerdown', (event) => { dragging = true; lastX = event.clientX; shell.setPointerCapture(event.pointerId); });
 shell.addEventListener('pointermove', (event) => { if (dragging) { rotation += (event.clientX - lastX) * .008; lastX = event.clientX; } });
-shell.addEventListener('pointerup', () => { dragging = false; });
+shell.addEventListener('pointerup', (event) => {
+  const clicked = markerPositions.find((marker) => Math.hypot(marker.x - event.offsetX, marker.y - event.offsetY) < 28);
+  dragging = false;
+  if (clicked) openStory(clicked.story);
+});
 window.addEventListener('resize', resize);
 resize(); draw();

@@ -48,10 +48,8 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 
 ### Main content order
 
-1. **Full-screen SF globe** — the first content scene after the welcome dissolve; it shows `HEY, I'M JUNYI` and `Currently working at Uber in San Francisco 🌁`. The globe should feel like a night-time Earth horizon: a subtle animated star field, city-light shimmer, blue atmospheric rim, and a floating San Francisco locator connected to the surface by a fine line.
-2. **IDENTITY / PROFILE** — personal photograph, expanded profile, location/current focus/contact channel.
-3. **JOURNEY.LOG** — the chronological record of places, fused directly with the interactive globe.
-4. **Footer** — compact archive signature and return-to-top link.
+1. **Full-screen globe** — the only main site experience after the welcome dissolve. It is a slowly rotating night-time Earth horizon with a subtle animated star field, city-light shimmer, and blue atmospheric rim.
+2. **Floating story points** — each documented location floats above the globe with a light and fine connector line. Clicking it opens its content in an overlay card on the same page; there are no detail pages or conventional section navigation.
 
 ## Content principles
 
@@ -62,16 +60,16 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 - Use short editorial notes and location metadata instead of overly long blocks of text.
 - Do not publish private information, precise home location, or photo EXIF/GPS metadata unintentionally.
 
-## Journey timeline
+## Journey timeline and globe
 
-- The chronological travel record replaces the standalone experience list on the homepage.
-- Each timeline row should contain a date or date range, city/region, coordinates, one-line memory or theme, image(s), tags, and optional external links.
-- Selecting a timeline row rotates/focuses the globe on its marker. It should later open a location detail page.
-- Keep professional experience available as a future separate page or compact profile link rather than competing with the journey experience on the homepage.
+- The globe itself is the timeline and archive interface; do not add a separate long scrolling timeline.
+- Each story point contains a city/region, date or date range, one-line memory or theme, image(s), tags, and optional Google Maps links.
+- Selecting a point opens a same-page overlay card. It never navigates to a new detail page.
+- Current real story points are San Francisco (intro) and Rome (field image); add more only when Junyi supplies the actual travel data.
 
 ## Globe, travel, and field notes
 
-The globe is a signature interaction, but it belongs after the personal introduction—not as the opening screen.
+The globe is the primary interaction and the opening site experience after the welcome dissolve.
 
 ### Globe interaction
 
@@ -79,17 +77,11 @@ The globe is a signature interaction, but it belongs after the personal introduc
 - The first SF view uses a cinematic low-orbit composition rather than a wireframe globe. Animation comes from the star field, city-light shimmer, atmosphere, and floating locator; it remains lightweight enough for a static GitHub Pages site.
 - Locations appear as restrained glowing markers.
 - Hover should reveal a place name/coordinate.
-- Clicking a marker or geographic region moves the visitor to a dedicated location page, e.g. `/places/tokyo`.
-- The transition can use an interface message such as:
+- Clicking a marker opens the place's content card in the current view.
 
-  ```text
-  > opening location: TOKYO
-  > loading field notes...
-  ```
+### Story card
 
-### Location detail page
-
-Each page should contain:
+Each same-page card should contain:
 
 - A location title and coordinate/date metadata.
 - A photo sequence or gallery.
@@ -110,7 +102,7 @@ Each page should contain:
 - Static site, compatible with GitHub Pages and the repository's existing Jekyll build workflow.
 - Homepage assets: `index.html`, `styles.css`, `script.js`.
 - Current globe is a lightweight custom canvas interaction to avoid a heavy dependency for the first release.
-- Current portrait asset: `assets/images/profile-rome.jpg` — black-and-white image taken in Rome. It is shown in the IDENTITY section with a subtle scanline/system-label treatment.
+- Current portrait asset: `assets/images/profile-rome.jpg` — black-and-white image taken in Rome. It is shown in the Rome story card.
 - Placeholder text that must be replaced before public release:
   - biography and current location
   - dated journey entries
@@ -130,6 +122,6 @@ Each page should contain:
 1. Add real portrait and photography assets, optimized for web delivery.
 2. Replace placeholder profile and journey metadata.
 3. Create a structured dataset for chronology, locations, tags, images, and Google Maps links.
-4. Build reusable location/blog detail pages.
-5. Upgrade globe markers to load from that dataset and link to their pages.
+4. Expand reusable same-page story cards with the supplied field-note data.
+5. Upgrade globe markers to load from that dataset.
 6. Add accessibility refinements: reduced-motion support, keyboard interaction for globe alternatives, semantic image alt text, and contrast checks.

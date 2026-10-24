@@ -1,0 +1,14 @@
+/* The site is one navigable globe; content opens in cards instead of new pages. */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 8; background: linear-gradient(180deg, rgba(2,7,17,.88), transparent); border: 0; }
+.nav-links, .status { display: none; }
+.hero { min-height: 100vh; height: 100vh; }
+.hero-globe { top: 0; }
+.sf-intro, .hero-down, .identity, .world, footer { display: none !important; }
+.globe-hint { color: rgba(213,220,231,.65) !important; }
+.story-card { position: fixed; z-index: 15; left: 5vw; bottom: 5vh; width: min(380px, calc(100vw - 40px)); padding: 24px; border: 1px solid rgba(142,231,255,.4); background: rgba(5,17,35,.88); box-shadow: 0 20px 65px rgba(0,0,0,.58), inset 0 0 35px rgba(67,143,215,.08); backdrop-filter: blur(18px); transform: translateY(130%); opacity: 0; pointer-events: none; transition: transform .45s cubic-bezier(.2,.8,.2,1), opacity .35s; }
+.story-card.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.story-close { position: absolute; right: 12px; top: 9px; color: var(--silver); border: 0; background: none; font: 27px/1 "DM Mono",monospace; cursor: pointer; }
+.story-kicker { margin: 0 0 12px; color: var(--cyan); font: 9px "DM Mono",monospace; letter-spacing: .14em; }
+.story-card h2 { margin: 0 0 13px; font-size: 32px; line-height: .95; letter-spacing: -.06em; }.story-card>p:not(.story-kicker) { color: #b9c4d3; line-height: 1.5; font-size: 14px; }
+.story-card img { width: 100%; max-height: 245px; margin: 5px 0 4px; object-fit: cover; filter: grayscale(1) contrast(1.08); }.story-tags { display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }.story-tags span { border: 1px solid var(--line); padding:5px 7px; color:var(--muted); font:9px "DM Mono",monospace; letter-spacing:.06em; }
+@media (max-width:800px) { .story-card { left:20px; bottom:20px; width:calc(100vw - 40px); }.nav { height:65px; }.wordmark { font-size:22px; } }
