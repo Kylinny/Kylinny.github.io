@@ -351,11 +351,13 @@ function openGallery() {
 }
 function closeGallery() {
   galleryView.classList.remove('open'); galleryView.setAttribute('aria-hidden', 'true');
+  galleryView.classList.remove('is-scrolled'); galleryView.scrollTop = 0;
   document.body.classList.remove('gallery-open');
   if (activeStory) storyCard.classList.add('open');
 }
 moreButton.addEventListener('click', openGallery);
 galleryBack.addEventListener('click', closeGallery);
+galleryView.addEventListener('scroll', () => galleryView.classList.toggle('is-scrolled', galleryView.scrollTop > 48), { passive: true });
 function focusStory(story) {
   const desiredRotation = -story.lon * Math.PI / 180;
   targetRotation = rotation + Math.atan2(Math.sin(desiredRotation - rotation), Math.cos(desiredRotation - rotation));

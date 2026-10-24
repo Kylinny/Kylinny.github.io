@@ -70,6 +70,7 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 - Do not add a close icon to a story card. A click on the globe's non-marker area or elsewhere outside a card/timeline should dissolve the card and restore the globe; clicking another point switches directly to the new card.
 - Every story card with supplied photos shows exactly one cover image and a `MORE PHOTOS >>` control below it. Do not dissolve images in the intro card. Text-only stories do not show a gallery control until photos are supplied.
 - `MORE PHOTOS >>` opens a full-screen, same-page Gallery Mode: an unclipped responsive image grid with the location title and a `← GLOBE` return control. This is the portfolio view for the location.
+- Once the visitor scrolls down in Gallery Mode, the `← GLOBE` return control should fade into a compact, semi-transparent arrow. It expands back to the full label at the top.
 - Individual Gallery Mode photos may carry a one- or two-sentence caption. On hover (or tap on touch devices), a semi-transparent deep-navy cover fades over the uncropped image and reveals the copy.
 - Current real story points are St. Louis (school years), San Francisco (intro), and Rome (field image); add more only when Junyi supplies the actual travel data.
 - Group story points primarily by **region** (for example North America, Europe, East Asia) because visitors explore spatially. Use themes such as photography, food, work, walking, and architecture as secondary tags within each place card.
