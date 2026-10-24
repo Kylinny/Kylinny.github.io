@@ -1,7 +1,7 @@
 /* Second-pass opening sequence: signal entry -> full-screen globe -> profile. */
 .entry-screen { background: radial-gradient(circle at 52% 46%, #102b53 0%, #06142a 34%, #02050c 75%); }
 .entry-screen::before { opacity: .2; }
-.welcome { font-size: clamp(3.8rem, 11vw, 10rem); letter-spacing: -.07em; animation: none; }
+.welcome { font-size: clamp(3.8rem, 11vw, 10rem); letter-spacing: -.07em; font-weight: 500; animation: none; }
 .welcome::before, .welcome::after { display: none; }
 .welcome-shadow { transform: translate(4px, 5px); }
 .beacon { position: absolute; display: block; width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px 2px var(--cyan), 0 0 30px 8px rgba(128,241,255,.27); animation: beacon 1.8s ease-in-out infinite; }

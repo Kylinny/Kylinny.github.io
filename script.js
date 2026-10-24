@@ -2,14 +2,25 @@ const entry = document.querySelector('#entry-screen');
 const archive = document.querySelector('#archive');
 const welcome = document.querySelector('.welcome');
 const welcomeText = welcome.dataset.text;
-let typedCharacters = 0;
-function typeWelcome() {
-  typedCharacters += 1;
-  welcome.textContent = welcomeText.slice(0, typedCharacters);
-  if (typedCharacters < welcomeText.length) setTimeout(typeWelcome, 130);
+let typingTimer;
+function typeWelcome(text) {
+  clearTimeout(typingTimer);
+  let typedCharacters = 0;
+  welcome.textContent = '';
+  const typeNextCharacter = () => {
+    typedCharacters += 1;
+    welcome.textContent = text.slice(0, typedCharacters);
+    if (typedCharacters < text.length) typingTimer = setTimeout(typeNextCharacter, 130);
+  };
+  typeNextCharacter();
 }
-setTimeout(typeWelcome, 500);
+typingTimer = setTimeout(() => typeWelcome(welcomeText), 500);
+const idlePromptTimer = setTimeout(() => {
+  if (!entry.classList.contains('is-gone')) typeWelcome('what are you waiting for');
+}, 10000);
 const enter = () => {
+  clearTimeout(typingTimer);
+  clearTimeout(idlePromptTimer);
   entry.classList.add('is-gone');
   archive.setAttribute('aria-hidden', 'false');
   focusStory(stories.find((story) => story.id === 'sf'));
