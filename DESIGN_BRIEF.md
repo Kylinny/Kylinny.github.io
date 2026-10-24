@@ -1,6 +1,6 @@
 # Personal Archive — Design Brief
 
-This document is the working source of truth for the visual direction and product requirements of Amy Yao's personal site. Update it whenever a design or content decision is made.
+This document is the working source of truth for the visual direction and product requirements of Junyi's personal site. Update it whenever a design or content decision is made.
 
 ## Core intent
 
@@ -57,6 +57,7 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 ## Content principles
 
 - Personal introduction stays concise, human, and first-person.
+- Current introduction: “Hey, I’m Junyi. Currently working at Uber in SF.”
 - The site should feel like an evolving record, not a finished corporate profile.
 - Photography should be central in the travel/location sections.
 - Use short editorial notes and location metadata instead of overly long blocks of text.
