@@ -62,6 +62,7 @@ const stories = [
       'assets/images/stl-web/stl-00-first-day.jpg': 'My first day on campus.',
       'assets/images/stl-web/IMG_3578.jpg': 'South 40 was a dream. I lived in Nemerov.',
       'assets/images/stl-web/IMG_3802.jpg': 'If COVID had never happened, I could’ve practiced Broadway makeup on my own face instead of this mannequin.',
+      'assets/images/stl-web/IMG_3242.jpg': 'Orientation Day — with my sophomore-year roommate on the right.',
     },
     tags: ['WASHINGTON UNIVERSITY', 'MIDWEST', '桃源'],
   },
