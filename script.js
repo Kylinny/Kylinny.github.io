@@ -12,7 +12,7 @@ document.querySelectorAll('[data-place]').forEach((button) => button.addEventLis
   button.classList.add('active');
   const target = locations.find((location) => location.name === button.dataset.place);
   if (target) rotation = -target.lon * Math.PI / 180;
-  toast.textContent = `SIGNAL LOCKED: ${button.dataset.place} — FIELD NOTES COMING NEXT`;
+  toast.textContent = `OPENING: ${button.dataset.place} — FIELD NOTES COMING NEXT`;
   toast.classList.add('show');
   clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
 }));

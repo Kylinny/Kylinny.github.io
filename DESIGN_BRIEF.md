@@ -8,19 +8,19 @@ Create a personal website that feels like entering a living digital archive rath
 
 The visitor journey is intentional:
 
-1. Enter a short, cinematic welcome signal.
+1. Enter a short, cinematic welcome screen.
 2. Scroll through a dissolve transition into a full-screen globe centered on San Francisco.
 3. Reveal the concise personal introduction beside the globe.
 4. Explore field notes, travel, photography, and deeper location pages.
 
 ## Visual language
 
-- **Mood:** futuristic, atmospheric, polished, subtly hacker-inspired.
+- **Mood:** futuristic, atmospheric, polished, subtly hacker-inspired—but never performatively technical.
 - **Avoid:** heavy “green code rain,” generic cyberpunk, or visual noise that makes the site feel like a gaming template.
-- **Palette:** near-black base, deep navy / midnight blue surfaces, cool silver typography, and a restrained electric cyan signal color.
+- **Palette:** near-black base, deep navy / midnight blue surfaces, cool silver typography, and a restrained electric cyan accent color.
 - **Typography:** clean editorial sans-serif for large headlines; monospace type for coordinates, metadata, interface labels, and system messages.
 - **Texture:** fine film grain, thin grid lines, scanning lines, faint glows, and low-opacity orbital geometry.
-- **Motion:** slow and intentional. Use small glitch offsets, signal pulses, smooth page/section transitions, and responsive hover states. Motion should never block reading.
+- **Motion:** slow and intentional. Use small glitch offsets, soft light pulses, smooth page/section transitions, and responsive hover states. Motion should never block reading.
 
 ### Color tokens
 
@@ -31,7 +31,7 @@ The visitor journey is intentional:
 | `--navy2` | Brighter blue surface / panel | `#0a2345` |
 | `--silver` | Main text and display type | `#d5dce7` |
 | `--muted` | Secondary labels | `#77869c` |
-| `--cyan` | Signals, active details, interactions | `#80f1ff` |
+| `--cyan` | Active details and interactions | `#80f1ff` |
 
 ## Homepage
 
@@ -40,7 +40,7 @@ The visitor journey is intentional:
 The site opens as a full-screen entry experience, not a conventional navigation header.
 
 - Main word: `WELCOME`.
-- The word is paired with a small number of blinking signal lights, sparse technical labels, and restrained byte strings.
+- The word is paired with a small number of blinking lights, sparse archive labels, and restrained byte strings.
 - Background is black-to-deep-navy, with a faint perspective grid.
 - A blinking down arrow stays in the lower-right corner to guide the visitor.
 - Visitor can click the arrow or scroll to enter the main site.
@@ -48,7 +48,7 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 
 ### Main content order
 
-1. **Full-screen SF globe** — the first content scene after the welcome dissolve; it shows `HEY, I'M JUNYI` and the one-line Uber/SF introduction.
+1. **Full-screen SF globe** — the first content scene after the welcome dissolve; it shows `HEY, I'M JUNYI` and `Currently working at Uber in San Francisco 🌁`.
 2. **IDENTITY / PROFILE** — personal photograph, expanded profile, location/current focus/contact channel.
 3. **JOURNEY.LOG** — the chronological record of places, fused directly with the interactive globe.
 4. **Footer** — compact archive signature and return-to-top link.
@@ -76,7 +76,7 @@ The globe is a signature interaction, but it belongs after the personal introduc
 ### Globe interaction
 
 - A 3D-style or canvas globe supports drag to rotate and scroll/pinch to zoom where practical.
-- Locations appear as restrained glowing signal markers.
+- Locations appear as restrained glowing markers.
 - Hover should reveal a place name/coordinate.
 - Clicking a marker or geographic region moves the visitor to a dedicated location page, e.g. `/places/tokyo`.
 - The transition can use an interface message such as:
