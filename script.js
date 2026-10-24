@@ -183,6 +183,19 @@ function drawGlobe(width, height, now) {
   return { radius, cx, cy };
 }
 
+function drawAtmosphericGlint(planet, now) {
+  const phase = (now / 18000) * Math.PI * 2;
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(planet.cx, planet.cy, planet.radius + 4, phase - .17, phase + .17);
+  ctx.strokeStyle = 'rgba(201, 248, 255, .76)';
+  ctx.lineWidth = 1.3;
+  ctx.shadowColor = '#7eeeff';
+  ctx.shadowBlur = 16;
+  ctx.stroke();
+  ctx.restore();
+}
+
 function drawStoryPoints(planet, now) {
   markerPositions = [];
   stories.forEach((story, index) => {
@@ -213,7 +226,11 @@ function draw(now = 0) {
     globeTilt += (targetTilt - globeTilt) * .05;
   }
   globeZoom += (targetZoom - globeZoom) * .035;
-  ctx.clearRect(0, 0, width, height); drawStars(width, height, now); drawStoryPoints(drawGlobe(width, height, now), now);
+  ctx.clearRect(0, 0, width, height);
+  drawStars(width, height, now);
+  const planet = drawGlobe(width, height, now);
+  drawAtmosphericGlint(planet, now);
+  drawStoryPoints(planet, now);
   requestAnimationFrame(draw);
 }
 
