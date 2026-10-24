@@ -20,3 +20,17 @@
 .portrait-scan {
   pointer-events: none;
 }
+
+.location-list button.active {
+  color: var(--cyan);
+  padding-left: 8px;
+  background: rgba(128, 241, 255, .04);
+}
+
+.timeline-note {
+  margin: -13px 0 28px !important;
+  color: var(--muted) !important;
+  font: 9px "DM Mono", monospace !important;
+  letter-spacing: .08em;
+  line-height: 1.55 !important;
+}

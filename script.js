@@ -8,6 +8,10 @@ window.addEventListener('touchmove', () => { if (!entry.classList.contains('is-g
 const toast = document.querySelector('#place-toast');
 let toastTimer;
 document.querySelectorAll('[data-place]').forEach((button) => button.addEventListener('click', () => {
+  document.querySelectorAll('[data-place]').forEach((item) => item.classList.remove('active'));
+  button.classList.add('active');
+  const target = locations.find((location) => location.name === button.dataset.place);
+  if (target) rotation = -target.lon * Math.PI / 180;
   toast.textContent = `SIGNAL LOCKED: ${button.dataset.place} — FIELD NOTES COMING NEXT`;
   toast.classList.add('show');
   clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2800);
@@ -17,7 +21,7 @@ const canvas = document.querySelector('#globe');
 const ctx = canvas.getContext('2d');
 const shell = document.querySelector('#globe-shell');
 let rotation = -0.65, dragging = false, lastX = 0;
-const locations = [{ name: 'TOKYO', lat: 35.6762, lon: 139.6503 }, { name: 'CALIFORNIA', lat: 36.7783, lon: -119.4179 }, { name: 'SEOUL', lat: 37.5665, lon: 126.978 }];
+const locations = [{ name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194 }, { name: 'ROME', lat: 41.9028, lon: 12.4964 }];
 function size() { const dpr = Math.min(window.devicePixelRatio || 1, 2); canvas.width = canvas.clientWidth * dpr; canvas.height = canvas.clientHeight * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
 function point(lat, lon, r, cx, cy) { const la = lat * Math.PI / 180; const lo = lon * Math.PI / 180 + rotation; const x = Math.cos(la) * Math.sin(lo); const y = Math.sin(la); const z = Math.cos(la) * Math.cos(lo); return { x: cx + r * x, y: cy - r * y, z }; }
 function draw() { const w = canvas.clientWidth, h = canvas.clientHeight, cx = w / 2, cy = h / 2, r = Math.min(w, h) * .37; ctx.clearRect(0, 0, w, h); const glow = ctx.createRadialGradient(cx, cy, r*.2, cx, cy, r*1.6); glow.addColorStop(0, 'rgba(75,185,255,.2)'); glow.addColorStop(1, 'rgba(11,37,80,0)'); ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);

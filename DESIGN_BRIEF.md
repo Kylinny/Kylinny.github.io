@@ -50,9 +50,8 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 
 1. **Hero / archive declaration** — a short, strong statement; do not crowd the top of the page with biography.
 2. **IDENTITY / PROFILE** — personal photograph, short introduction, location/current focus/contact channel.
-3. **EXPERIENCE.LOG** — selected experiences in an expandable, system-log-like timeline.
-4. **WORLD.EXE** — travel, photography, personal reviews, and interactive globe.
-5. **Footer** — compact archive signature and return-to-top link.
+3. **JOURNEY.LOG** — the chronological record of places, fused directly with the interactive globe.
+4. **Footer** — compact archive signature and return-to-top link.
 
 ## Content principles
 
@@ -63,11 +62,12 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 - Use short editorial notes and location metadata instead of overly long blocks of text.
 - Do not publish private information, precise home location, or photo EXIF/GPS metadata unintentionally.
 
-## Experiences
+## Journey timeline
 
-- Present experiences as selected signals rather than a dense résumé.
-- Recommended fields: year/date range, role or theme, organization/project, one-sentence context, optional external link.
-- Maintain an adaptable content source later (for example, `data/experience.json` or a Markdown collection) so the visual component is separate from the personal data.
+- The chronological travel record replaces the standalone experience list on the homepage.
+- Each timeline row should contain a date or date range, city/region, coordinates, one-line memory or theme, image(s), tags, and optional external links.
+- Selecting a timeline row rotates/focuses the globe on its marker. It should later open a location detail page.
+- Keep professional experience available as a future separate page or compact profile link rather than competing with the journey experience on the homepage.
 
 ## Globe, travel, and field notes
 
@@ -112,7 +112,7 @@ Each page should contain:
 - Current portrait asset: `assets/images/profile-rome.jpg` — black-and-white image taken in Rome. It is shown in the IDENTITY section with a subtle scanline/system-label treatment.
 - Placeholder text that must be replaced before public release:
   - biography and current location
-  - experience entries
+  - dated journey entries
   - `HELLO@YOURDOMAIN.COM`
   - generic Google Maps link
   - sample globe locations / field notes
@@ -127,8 +127,8 @@ Each page should contain:
 ## Future iterations
 
 1. Add real portrait and photography assets, optimized for web delivery.
-2. Replace placeholder profile and experience copy.
-3. Create a structured dataset for locations, tags, images, and Google Maps links.
+2. Replace placeholder profile and journey metadata.
+3. Create a structured dataset for chronology, locations, tags, images, and Google Maps links.
 4. Build reusable location/blog detail pages.
 5. Upgrade globe markers to load from that dataset and link to their pages.
 6. Add accessibility refinements: reduced-motion support, keyboard interaction for globe alternatives, semantic image alt text, and contrast checks.
