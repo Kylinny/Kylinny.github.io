@@ -56,6 +56,7 @@ const stories = [
     captions: {
       'assets/images/sf-00-golden-gate.jpg': 'I took this shot while interning at PlayStation in the summer of 2023. It was my first time in the Bay Area, and I absolutely fell in love.',
       'assets/images/sf-02.jpg': 'View from Alcatraz Island.',
+      'assets/images/sf-gallery-06.jpg': 'Sunset fishing feels surreal.',
     },
     tags: ['HOME BASE', 'UBER', 'NOW'],
   },
