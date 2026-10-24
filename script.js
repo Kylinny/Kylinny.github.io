@@ -53,6 +53,9 @@ const stories = [
     kicker: 'HOME BASE', timestamp: '2023.05—08 · 2024.10—PRESENT', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁 And I LOVE fog',
     cover: 'assets/images/sf-00-golden-gate.jpg',
     gallery: ['assets/images/sf-00-golden-gate.jpg', 'assets/images/sf-01.jpg', 'assets/images/sf-02.jpg', 'assets/images/sf-03.jpg', 'assets/images/sf-gallery-01.jpg', 'assets/images/sf-gallery-02.jpg', 'assets/images/sf-gallery-03.jpg', 'assets/images/sf-gallery-04.jpg', 'assets/images/sf-gallery-05.jpg'],
+    captions: {
+      'assets/images/sf-00-golden-gate.jpg': 'I took this shot while interning at PlayStation in the summer of 2023. It was my first time in the Bay Area, and I absolutely fell in love.',
+    },
     tags: ['HOME BASE', 'UBER', 'NOW'],
   },
   {
@@ -324,9 +327,21 @@ function openGallery() {
   galleryKicker.textContent = `${activeStory.country} / ${activeStory.timestamp || ''}`;
   galleryTitle.textContent = activeStory.name;
   galleryGrid.replaceChildren(...activeStory.gallery.map((source, index) => {
+    const caption = activeStory.captions?.[source];
+    const figure = document.createElement('figure');
+    figure.className = 'gallery-item';
     const image = document.createElement('img');
     image.src = source; image.alt = `${activeStory.name} gallery image ${index + 1}`;
-    return image;
+    figure.append(image);
+    if (caption) {
+      const text = document.createElement('figcaption');
+      text.textContent = caption;
+      figure.classList.add('has-caption');
+      figure.tabIndex = 0;
+      figure.append(text);
+      figure.addEventListener('click', () => figure.classList.toggle('caption-open'));
+    }
+    return figure;
   }));
   storyCard.classList.remove('open');
   galleryView.classList.add('open'); galleryView.setAttribute('aria-hidden', 'false');
