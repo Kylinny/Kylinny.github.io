@@ -84,7 +84,7 @@ const stories = [
       'assets/images/sf-web/sf-02.jpg': 'View from Alcatraz Island.',
       'assets/images/sf-web/sf-gallery-06.jpg': 'Sunset fishing feels surreal.',
     },
-    tags: ['HOME BASE', 'UBER', 'NOW'],
+    tags: ['WORK', 'AI THEME PARK', 'CALI'],
   },
   {
     id: 'rome', name: 'ROME', country: 'ITALY', lat: 41.9028, lon: 12.4964,
