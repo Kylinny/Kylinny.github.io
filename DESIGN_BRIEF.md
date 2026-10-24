@@ -119,7 +119,7 @@ Each same-page card should contain:
 - Photos in story cards and Gallery Mode must preserve their original aspect ratio and complete composition; never use cover-cropping or a visible photo frame. The single cover should float directly in the semi-transparent card. Gallery Mode should use an adaptive, editorial collage rather than a fixed column count: lower-resolution and portrait images may be smaller, while landscape images can take wider space. Additional photos belong in Gallery Mode, without an automatic dissolve sequence.
 - San Francisco story timestamps: `2023.05—08` and `2024.10—PRESENT`.
 - San Francisco cover image: `assets/images/sf-00-golden-gate.jpg` (foggy Golden Gate Bridge). Gallery Mode uses the browser-normalized assets in `assets/images/sf-web/`, preserving each photo's colour and complete aspect ratio. This includes conversion of supplied HEIC/HEIF photos (including one delivered with a `.jpg` filename) to avoid black-image rendering in browsers.
-- St. Louis story timestamp: `2021.09—2024.05`. Its `FIRST DAY` cover is `assets/images/stl-00-first-day.jpg` (Washington University in St. Louis entrance). Gallery Mode begins with that cover and continues with 10 supplied STL images in `assets/images/stl/`.
+- St. Louis story timestamp: `2021.09—2024.05`. Its `FIRST DAY` cover is the Washington University in St. Louis entrance. Gallery Mode uses browser-normalized colour assets in `assets/images/stl-web/`, including 10 supplied STL images, to avoid black-image rendering.
 - Placeholder text that must be replaced before public release:
   - biography and current location
   - dated journey entries
