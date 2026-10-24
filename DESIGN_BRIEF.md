@@ -67,6 +67,8 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 - Each story point contains a city/region, date or date range, one-line memory or theme, image(s), tags, and optional Google Maps links.
 - Selecting a point opens a same-page overlay card, activates its right-side timeline row, and focuses the globe on the location. It never navigates to a new detail page.
 - Do not add a close icon to a story card. A click on the globe's non-marker area or elsewhere outside a card/timeline should dissolve the card and restore the globe; clicking another point switches directly to the new card.
+- Every story card shows exactly one cover image and a `MORE >>` control below it. Do not dissolve images in the intro card.
+- `MORE >>` opens a full-screen, same-page Gallery Mode: an unclipped responsive image grid with the location title and a `← GLOBE` return control. This is the portfolio view for the location.
 - Current real story points are San Francisco (intro) and Rome (field image); add more only when Junyi supplies the actual travel data.
 - Group story points primarily by **region** (for example North America, Europe, East Asia) because visitors explore spatially. Use themes such as photography, food, work, walking, and architecture as secondary tags within each place card.
 
@@ -107,10 +109,10 @@ Each same-page card should contain:
 - Static site, compatible with GitHub Pages and the repository's existing Jekyll build workflow.
 - Homepage assets: `index.html`, `styles.css`, `script.js`.
 - Current globe is a lightweight custom canvas interaction to avoid a heavy dependency for the first release.
-- Rome story timestamp: `2025.09`. Story images: `assets/images/profile-rome.jpg` (St. Peter's Square) and `assets/images/rome-colosseum.jpg` (Colosseum). The card is image-led, with no descriptive body copy; the two images dissolve between one another automatically.
-- Photos in story cards must preserve their original aspect ratio and complete composition; never use cover-cropping or a visible photo frame. They should float directly in the semi-transparent card and dissolve between images.
+- Rome story timestamp: `2025.09`. Its cover is `assets/images/profile-rome.jpg` (St. Peter's Square); Gallery Mode includes it and `assets/images/rome-colosseum.jpg` (Colosseum). The card is image-led, with no descriptive body copy.
+- Photos in story cards and Gallery Mode must preserve their original aspect ratio and complete composition; never use cover-cropping or a visible photo frame. The single cover should float directly in the semi-transparent card. Additional photos belong in Gallery Mode, without an automatic dissolve sequence.
 - San Francisco story timestamp: `2024.10—PRESENT`.
-- San Francisco story images begin with `assets/images/sf-00-golden-gate.jpg` (foggy Golden Gate Bridge), followed by `assets/images/sf-01.jpg`, `assets/images/sf-02.jpg`, and `assets/images/sf-03.jpg`; dissolve automatically while the SF card is open.
+- San Francisco cover image: `assets/images/sf-00-golden-gate.jpg` (foggy Golden Gate Bridge). Its Gallery Mode includes that cover, `assets/images/sf-01.jpg` through `assets/images/sf-03.jpg`, and `assets/images/sf-gallery-01.jpg` through `assets/images/sf-gallery-05.jpg`.
 - Placeholder text that must be replaced before public release:
   - biography and current location
   - dated journey entries

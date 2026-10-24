@@ -29,12 +29,14 @@ const stories = [
   {
     id: 'sf', name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194,
     kicker: 'HOME BASE', timestamp: '2024.10—PRESENT', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁',
-    images: ['assets/images/sf-00-golden-gate.jpg', 'assets/images/sf-01.jpg', 'assets/images/sf-02.jpg', 'assets/images/sf-03.jpg'], tags: ['HOME BASE', 'UBER', 'NOW'],
+    cover: 'assets/images/sf-00-golden-gate.jpg',
+    gallery: ['assets/images/sf-00-golden-gate.jpg', 'assets/images/sf-01.jpg', 'assets/images/sf-02.jpg', 'assets/images/sf-03.jpg', 'assets/images/sf-gallery-01.jpg', 'assets/images/sf-gallery-02.jpg', 'assets/images/sf-gallery-03.jpg', 'assets/images/sf-gallery-04.jpg', 'assets/images/sf-gallery-05.jpg'],
+    tags: ['HOME BASE', 'UBER', 'NOW'],
   },
   {
     id: 'rome', name: 'ROME', lat: 41.9028, lon: 12.4964,
     kicker: 'FIELD IMAGE / ITALY', timestamp: '2025.09',
-    images: ['assets/images/profile-rome.jpg', 'assets/images/rome-colosseum.jpg'], tags: ['ROME', 'PHOTOGRAPHY', 'ARCHIVE'],
+    cover: 'assets/images/profile-rome.jpg', gallery: ['assets/images/profile-rome.jpg', 'assets/images/rome-colosseum.jpg'], tags: ['ROME', 'PHOTOGRAPHY', 'ARCHIVE'],
   },
 ];
 let rotation = 2.1366; // San Francisco faces the viewer on first load.
@@ -213,42 +215,61 @@ const storyImage = document.querySelector('#story-image');
 const storyImageFrame = document.querySelector('#story-image-frame');
 const storyBody = document.querySelector('#story-body');
 const storyTags = document.querySelector('#story-tags');
-let storyImageTimer;
-function showStoryImage(story, index) {
-  const images = story.images;
+const moreButton = document.querySelector('#more-button');
+const galleryView = document.querySelector('#gallery-view');
+const galleryBack = document.querySelector('#gallery-back');
+const galleryKicker = document.querySelector('#gallery-kicker');
+const galleryTitle = document.querySelector('#gallery-title');
+const galleryGrid = document.querySelector('#gallery-grid');
+let activeStory;
+function showStoryImage(story) {
   storyImage.classList.add('is-dissolving');
   setTimeout(() => {
-    storyImage.src = images[index];
-    storyImage.alt = `Field image from ${story.name}, ${index + 1} of ${images.length}`;
+    storyImage.src = story.cover;
+    storyImage.alt = `Cover image from ${story.name}`;
     storyImageFrame.hidden = false;
     requestAnimationFrame(() => storyImage.classList.remove('is-dissolving'));
   }, 360);
 }
 function openStory(story) {
-  clearInterval(storyImageTimer);
+  activeStory = story;
   storyKicker.textContent = story.timestamp ? `${story.kicker} / ${story.timestamp}` : story.kicker;
   storyTitle.textContent = story.name;
   storyBody.textContent = story.body || '';
   storyBody.hidden = !story.body;
   storyTags.replaceChildren(...story.tags.map((tag) => { const label = document.createElement('span'); label.textContent = tag; return label; }));
-  if (story.images?.length) {
-    let imageIndex = 0;
-    showStoryImage(story, imageIndex);
-    if (story.images.length > 1) storyImageTimer = setInterval(() => {
-      imageIndex = (imageIndex + 1) % story.images.length;
-      showStoryImage(story, imageIndex);
-    }, 4600);
-  } else { storyImageFrame.hidden = true; storyImage.removeAttribute('src'); }
+  if (story.cover) showStoryImage(story);
+  else { storyImageFrame.hidden = true; storyImage.removeAttribute('src'); }
   storyCard.classList.add('open'); storyCard.setAttribute('aria-hidden', 'false');
   document.querySelector('.hero').classList.add('story-open');
   document.querySelectorAll('.timeline-item').forEach((item) => item.classList.toggle('active', item.dataset.story === story.id));
 }
+function openGallery() {
+  if (!activeStory?.gallery?.length) return;
+  galleryKicker.textContent = `${activeStory.kicker} / ${activeStory.timestamp || ''}`;
+  galleryTitle.textContent = activeStory.name;
+  galleryGrid.replaceChildren(...activeStory.gallery.map((source, index) => {
+    const image = document.createElement('img');
+    image.src = source; image.alt = `${activeStory.name} gallery image ${index + 1}`;
+    return image;
+  }));
+  storyCard.classList.remove('open');
+  galleryView.classList.add('open'); galleryView.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('gallery-open');
+}
+function closeGallery() {
+  galleryView.classList.remove('open'); galleryView.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('gallery-open');
+  if (activeStory) storyCard.classList.add('open');
+}
+moreButton.addEventListener('click', openGallery);
+galleryBack.addEventListener('click', closeGallery);
 function focusStory(story) {
   targetRotation = -story.lon * Math.PI / 180;
   targetZoom = 1.2;
   openStory(story);
 }
-function closeStory() { clearInterval(storyImageTimer); targetZoom = 1; storyCard.classList.remove('open'); storyCard.setAttribute('aria-hidden', 'true'); document.querySelector('.hero').classList.remove('story-open'); }
+function closeStory() { targetZoom = 1; storyCard.classList.remove('open'); storyCard.setAttribute('aria-hidden', 'true'); document.querySelector('.hero').classList.remove('story-open'); }
 document.querySelectorAll('.timeline-item').forEach((item) => item.addEventListener('click', () => {
   const story = stories.find((candidate) => candidate.id === item.dataset.story);
   if (story) focusStory(story);
