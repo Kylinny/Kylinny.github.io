@@ -104,6 +104,7 @@ Each same-page card should contain:
 - Homepage assets: `index.html`, `styles.css`, `script.js`.
 - Current globe is a lightweight custom canvas interaction to avoid a heavy dependency for the first release.
 - Rome story timestamp: `2025.09`. Story images: `assets/images/profile-rome.jpg` (St. Peter's Square) and `assets/images/rome-colosseum.jpg` (Colosseum). When the Rome card is open, the two images dissolve between one another automatically.
+- San Francisco story timestamp: `2024.10—PRESENT`.
 - Placeholder text that must be replaced before public release:
   - biography and current location
   - dated journey entries
