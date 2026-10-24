@@ -41,10 +41,13 @@ const stories = [
 ];
 let rotation = 2.1366; // San Francisco faces the viewer on first load.
 let targetRotation = rotation;
+let globeTilt = 0;
+let targetTilt = globeTilt;
 let globeZoom = 1;
 let targetZoom = 1;
 let dragging = false;
 let lastX = 0;
+let lastY = 0;
 let stars = [];
 let cityLights = [];
 let markerPositions = [];
@@ -85,13 +88,15 @@ function resize() {
   makeAtmosphere();
 }
 
-function point(lat, lon, radius, cx, cy, spin = rotation) {
+function point(lat, lon, radius, cx, cy, spin = rotation, tilt = globeTilt) {
   const latitude = lat * Math.PI / 180;
   const longitude = lon * Math.PI / 180 + spin;
   const x = Math.cos(latitude) * Math.sin(longitude);
   const y = Math.sin(latitude);
   const z = Math.cos(latitude) * Math.cos(longitude);
-  return { x: cx + radius * x, y: cy - radius * y, z };
+  const tiltedY = y * Math.cos(tilt) - z * Math.sin(tilt);
+  const tiltedZ = y * Math.sin(tilt) + z * Math.cos(tilt);
+  return { x: cx + radius * x, y: cy - radius * tiltedY, z: tiltedZ };
 }
 
 async function loadLandContours() {
@@ -191,6 +196,7 @@ function draw(now = 0) {
   if (!dragging) {
     const rotationDifference = targetRotation - rotation;
     rotation += Math.abs(rotationDifference) > .0003 ? rotationDifference * .028 : .00003;
+    globeTilt += (targetTilt - globeTilt) * .05;
   }
   globeZoom += (targetZoom - globeZoom) * .035;
   ctx.clearRect(0, 0, width, height); drawStars(width, height, now); drawStoryPoints(drawGlobe(width, height, now), now);
@@ -266,6 +272,7 @@ moreButton.addEventListener('click', openGallery);
 galleryBack.addEventListener('click', closeGallery);
 function focusStory(story) {
   targetRotation = -story.lon * Math.PI / 180;
+  targetTilt = 0;
   targetZoom = 1.2;
   openStory(story);
 }
@@ -275,8 +282,16 @@ document.querySelectorAll('.timeline-item').forEach((item) => item.addEventListe
   if (story) focusStory(story);
 }));
 
-shell.addEventListener('pointerdown', (event) => { dragging = true; lastX = event.clientX; shell.setPointerCapture(event.pointerId); });
-shell.addEventListener('pointermove', (event) => { if (dragging) { rotation += (event.clientX - lastX) * .008; targetRotation = rotation; lastX = event.clientX; } });
+shell.addEventListener('pointerdown', (event) => { dragging = true; lastX = event.clientX; lastY = event.clientY; shell.setPointerCapture(event.pointerId); });
+shell.addEventListener('pointermove', (event) => {
+  if (!dragging) return;
+  rotation += (event.clientX - lastX) * .008;
+  globeTilt = Math.max(-1.05, Math.min(1.05, globeTilt + (event.clientY - lastY) * .006));
+  targetRotation = rotation;
+  targetTilt = globeTilt;
+  lastX = event.clientX;
+  lastY = event.clientY;
+});
 shell.addEventListener('pointerup', (event) => {
   const clicked = markerPositions.find((marker) => Math.hypot(marker.x - event.offsetX, marker.y - event.offsetY) < 28);
   dragging = false;

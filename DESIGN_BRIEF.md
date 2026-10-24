@@ -78,6 +78,8 @@ The globe is the primary interaction and the opening site experience after the w
 
 ### Globe interaction
 
+- Dragging the globe supports unlimited horizontal 360° rotation and a controlled vertical tilt; timeline selections still smoothly return the view to the chosen location.
+
 - A 3D-style or canvas globe supports drag to rotate and scroll/pinch to zoom where practical.
 - The only globe interaction label is `ROTATE * SELECT`.
 - The first SF view uses a cinematic low-orbit composition rather than a wireframe globe. Animation comes from the star field, city-light shimmer, atmosphere, and floating locator; it remains lightweight enough for a static GitHub Pages site.
