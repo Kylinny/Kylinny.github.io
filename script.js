@@ -75,7 +75,11 @@ const stories = [
   {
     id: 'rome', name: 'ROME', country: 'ITALY', lat: 41.9028, lon: 12.4964,
     kicker: 'FIELD IMAGE / ITALY', timestamp: '2025.09',
-    cover: 'assets/images/profile-rome.jpg', gallery: ['assets/images/profile-rome.jpg', 'assets/images/rome-colosseum.jpg'], tags: ['PHOTOGRAPHY', 'TRAVEL', 'EUROPE'],
+    cover: 'assets/images/profile-rome.jpg', gallery: ['assets/images/profile-rome.jpg', 'assets/images/rome-colosseum.jpg'],
+    captions: {
+      'assets/images/profile-rome.jpg': '2025 was a Jubilee Year in the Vatican. I was so lucky to be here for this once-in-every-25-years occasion.',
+    },
+    tags: ['PHOTOGRAPHY', 'TRAVEL', 'EUROPE'],
   },
 ];
 let rotation = 2.1366; // San Francisco faces the viewer on first load.
