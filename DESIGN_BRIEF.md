@@ -108,7 +108,7 @@ Each page should contain:
 - Static site, compatible with GitHub Pages and the repository's existing Jekyll build workflow.
 - Homepage assets: `index.html`, `styles.css`, `script.js`.
 - Current globe is a lightweight custom canvas interaction to avoid a heavy dependency for the first release.
-- The portrait area is deliberately an abstract placeholder. Replace it with a real, web-optimized personal photo before publishing.
+- Current portrait asset: `assets/images/profile-rome.jpg` — black-and-white image taken in Rome. It is shown in the IDENTITY section with a subtle scanline/system-label treatment.
 - Placeholder text that must be replaced before public release:
   - biography and current location
   - experience entries

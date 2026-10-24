@@ -1,0 +1,22 @@
+/* Real portrait treatment: kept separate from the compact base stylesheet. */
+.portrait {
+  background: #09101c;
+}
+
+.portrait::before {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.portrait-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 53%;
+  filter: grayscale(1) contrast(1.12) brightness(.82);
+}
+
+.portrait-scan {
+  pointer-events: none;
+}
