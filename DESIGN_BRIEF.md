@@ -80,7 +80,7 @@ The globe is the primary interaction and the opening site experience after the w
 ### Globe interaction
 
 - Dragging the globe supports unlimited horizontal 360° rotation and a controlled vertical tilt; timeline selections still smoothly return the view to the chosen location. When idle, the globe makes one complete rotation every 24 hours, starting from the San Francisco orientation. A separate restrained atmospheric glint travels the rim as a visible activity cue without speeding up the globe.
-- The atmospheric glint carries the small label `THIS IS A LIVING EARTH, ROTATING AT ITS REAL-WORLD PACE.` directly above it, so the explanation travels with the moving line instead of staying fixed on screen.
+- The atmospheric glint makes a full, slow visual circuit of the rim roughly every 48 seconds. It carries the small label `THIS IS A LIVING EARTH, ROTATING AT ITS REAL-WORLD PACE.` directly above it, with each letter curved along the rim. The explanation travels with the moving line instead of staying fixed on screen, including when it passes behind the visible horizon.
 
 - A 3D-style or canvas globe supports drag to rotate and scroll/pinch to zoom where practical.
 - The only globe interaction label is `ROTATE * SELECT`.

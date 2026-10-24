@@ -183,14 +183,31 @@ function drawGlobe(width, height, now) {
   return { radius, cx, cy };
 }
 
+function drawCurvedText(text, cx, cy, radius, centerAngle) {
+  const tracking = 1.15;
+  const characters = [...text];
+  const widths = characters.map((character) => ctx.measureText(character).width);
+  const totalWidth = widths.reduce((sum, width) => sum + width, 0) + tracking * (characters.length - 1);
+  let offset = -totalWidth / 2;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  characters.forEach((character, index) => {
+    const width = widths[index];
+    const angle = centerAngle + (offset + width / 2) / radius;
+    ctx.save();
+    ctx.translate(cx + Math.cos(angle) * radius, cy + Math.sin(angle) * radius);
+    ctx.rotate(angle + Math.PI / 2);
+    ctx.fillText(character, 0, 0);
+    ctx.restore();
+    offset += width + tracking;
+  });
+}
+
 function drawAtmosphericGlint(planet, now) {
-  const phase = (now / 18000) * Math.PI * 2;
-  const labelRadius = planet.radius + 25;
-  const labelX = planet.cx + Math.cos(phase) * labelRadius;
-  const labelY = planet.cy + Math.sin(phase) * labelRadius - 10;
+  const phase = (now / 48000) * Math.PI * 2;
   ctx.save();
   ctx.beginPath();
-  ctx.arc(planet.cx, planet.cy, planet.radius + 4, phase - .17, phase + .17);
+  ctx.arc(planet.cx, planet.cy, planet.radius + 4, phase - .31, phase + .31);
   ctx.strokeStyle = 'rgba(201, 248, 255, .76)';
   ctx.lineWidth = 1.3;
   ctx.shadowColor = '#7eeeff';
@@ -199,8 +216,7 @@ function drawAtmosphericGlint(planet, now) {
   ctx.shadowBlur = 10;
   ctx.fillStyle = 'rgba(202, 248, 255, .78)';
   ctx.font = '8px "DM Mono", monospace';
-  ctx.textAlign = 'center';
-  ctx.fillText('THIS IS A LIVING EARTH, ROTATING AT ITS REAL-WORLD PACE.', labelX, labelY);
+  drawCurvedText('THIS IS A LIVING EARTH, ROTATING AT ITS REAL-WORLD PACE.', planet.cx, planet.cy, planet.radius + 21, phase);
   ctx.restore();
 }
 
