@@ -29,7 +29,7 @@ const stories = [
   },
   {
     id: 'rome', name: 'ROME', lat: 41.9028, lon: 12.4964,
-    kicker: 'FIELD IMAGE / ITALY', body: 'A moment by the fountain at St. Peter’s Square — one of the first images in this growing archive.',
+    kicker: 'FIELD IMAGE / ITALY', timestamp: '2025.09', body: 'A moment by the fountain at St. Peter’s Square — one of the first images in this growing archive.',
     images: ['assets/images/profile-rome.jpg', 'assets/images/rome-colosseum.jpg'], tags: ['ROME', 'PHOTOGRAPHY', 'ARCHIVE'],
   },
 ];
@@ -176,7 +176,7 @@ function showStoryImage(images, index) {
 }
 function openStory(story) {
   clearInterval(storyImageTimer);
-  storyKicker.textContent = story.kicker;
+  storyKicker.textContent = story.timestamp ? `${story.kicker} / ${story.timestamp}` : story.kicker;
   storyTitle.textContent = story.name;
   storyBody.textContent = story.body;
   storyTags.replaceChildren(...story.tags.map((tag) => { const label = document.createElement('span'); label.textContent = tag; return label; }));
