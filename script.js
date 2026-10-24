@@ -21,6 +21,7 @@ window.addEventListener('touchmove', () => { if (!entry.classList.contains('is-g
 const canvas = document.querySelector('#globe');
 const ctx = canvas.getContext('2d');
 const shell = document.querySelector('#globe-shell');
+const EARTH_DAY_MS = 24 * 60 * 60 * 1000;
 const locations = [
   { name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194 },
   { name: 'ROME', lat: 41.9028, lon: 12.4964 },
@@ -48,6 +49,7 @@ let targetZoom = 1;
 let dragging = false;
 let lastX = 0;
 let lastY = 0;
+let lastRotationTimestamp = Date.now();
 let stars = [];
 let cityLights = [];
 let markerPositions = [];
@@ -193,9 +195,13 @@ function drawStoryPoints(planet, now) {
 
 function draw(now = 0) {
   const width = canvas.clientWidth; const height = canvas.clientHeight;
+  const timestamp = Date.now();
+  const automaticStep = ((timestamp - lastRotationTimestamp) / EARTH_DAY_MS) * Math.PI * 2;
+  lastRotationTimestamp = timestamp;
   if (!dragging) {
     const rotationDifference = targetRotation - rotation;
-    rotation += Math.abs(rotationDifference) > .0003 ? rotationDifference * .028 : .00003;
+    if (Math.abs(rotationDifference) > .0003) rotation += rotationDifference * .028;
+    else { rotation += automaticStep; targetRotation = rotation; }
     globeTilt += (targetTilt - globeTilt) * .05;
   }
   globeZoom += (targetZoom - globeZoom) * .035;
@@ -271,7 +277,8 @@ function closeGallery() {
 moreButton.addEventListener('click', openGallery);
 galleryBack.addEventListener('click', closeGallery);
 function focusStory(story) {
-  targetRotation = -story.lon * Math.PI / 180;
+  const desiredRotation = -story.lon * Math.PI / 180;
+  targetRotation = rotation + Math.atan2(Math.sin(desiredRotation - rotation), Math.cos(desiredRotation - rotation));
   targetTilt = 0;
   targetZoom = 1.2;
   openStory(story);
