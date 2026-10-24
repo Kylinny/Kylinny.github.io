@@ -23,10 +23,17 @@ const ctx = canvas.getContext('2d');
 const shell = document.querySelector('#globe-shell');
 const EARTH_DAY_MS = 24 * 60 * 60 * 1000;
 const locations = [
+  { name: 'ST. LOUIS', lat: 38.627, lon: -90.1994 },
   { name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194 },
   { name: 'ROME', lat: 41.9028, lon: 12.4964 },
 ];
 const stories = [
+  {
+    id: 'stl', name: 'ST. LOUIS', country: 'USA', lat: 38.627, lon: -90.1994,
+    kicker: 'SCHOOL YEARS', timestamp: '2021.09—2024.05',
+    body: 'I went to Washington University in St. Louis — no, it’s not in Seattle, nor is it in Washington. It may sound like the middle of nowhere. But we do have a pretty great monument: the Gateway Arch — and, believe it or not, it’s a NATIONAL PARK!',
+    tags: ['WASHINGTON UNIVERSITY', 'MIDWEST', 'GATEWAY ARCH'],
+  },
   {
     id: 'sf', name: 'SAN FRANCISCO', country: 'USA', lat: 37.7749, lon: -122.4194,
     kicker: 'HOME BASE', timestamp: '2023.05—08 · 2024.10—PRESENT', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁 And I LOVE fogs',
@@ -249,6 +256,7 @@ function openStory(story) {
   storyTitle.textContent = story.name;
   storyBody.textContent = story.body || '';
   storyBody.hidden = !story.body;
+  moreButton.hidden = !story.gallery?.length;
   storyTags.replaceChildren(...story.tags.map((tag) => { const label = document.createElement('span'); label.textContent = tag; return label; }));
   if (story.cover) showStoryImage(story);
   else { storyImageFrame.hidden = true; storyImage.removeAttribute('src'); }

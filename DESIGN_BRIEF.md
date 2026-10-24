@@ -67,9 +67,9 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 - Each story point contains a city/region, date or date range, one-line memory or theme, image(s), tags, and optional Google Maps links.
 - Selecting a point opens a same-page overlay card, activates its right-side timeline row, and focuses the globe on the location. It never navigates to a new detail page.
 - Do not add a close icon to a story card. A click on the globe's non-marker area or elsewhere outside a card/timeline should dissolve the card and restore the globe; clicking another point switches directly to the new card.
-- Every story card shows exactly one cover image and a `MORE >>` control below it. Do not dissolve images in the intro card.
-- `MORE >>` opens a full-screen, same-page Gallery Mode: an unclipped responsive image grid with the location title and a `← GLOBE` return control. This is the portfolio view for the location.
-- Current real story points are San Francisco (intro) and Rome (field image); add more only when Junyi supplies the actual travel data.
+- Every story card with supplied photos shows exactly one cover image and a `MORE PHOTOS >>` control below it. Do not dissolve images in the intro card. Text-only stories do not show a gallery control until photos are supplied.
+- `MORE PHOTOS >>` opens a full-screen, same-page Gallery Mode: an unclipped responsive image grid with the location title and a `← GLOBE` return control. This is the portfolio view for the location.
+- Current real story points are St. Louis (school years), San Francisco (intro), and Rome (field image); add more only when Junyi supplies the actual travel data.
 - Group story points primarily by **region** (for example North America, Europe, East Asia) because visitors explore spatially. Use themes such as photography, food, work, walking, and architecture as secondary tags within each place card.
 
 ## Globe, travel, and field notes
@@ -115,6 +115,7 @@ Each same-page card should contain:
 - Photos in story cards and Gallery Mode must preserve their original aspect ratio and complete composition; never use cover-cropping or a visible photo frame. The single cover should float directly in the semi-transparent card. Additional photos belong in Gallery Mode, without an automatic dissolve sequence.
 - San Francisco story timestamps: `2023.05—08` and `2024.10—PRESENT`.
 - San Francisco cover image: `assets/images/sf-00-golden-gate.jpg` (foggy Golden Gate Bridge). Its Gallery Mode includes that cover, `assets/images/sf-01.jpg` through `assets/images/sf-03.jpg`, and `assets/images/sf-gallery-01.jpg` through `assets/images/sf-gallery-05.jpg`.
+- St. Louis story timestamp: `2021.09—2024.05`. It is initially text-only and can receive a cover and Gallery Mode when Junyi supplies photos.
 - Placeholder text that must be replaced before public release:
   - biography and current location
   - dated journey entries
