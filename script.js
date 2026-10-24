@@ -43,9 +43,9 @@ const stories = [
     id: 'stl', name: 'ST. LOUIS', country: 'USA', lat: 38.627, lon: -90.1994,
     kicker: 'FIRST DAY', timestamp: '2021.09—2024.05',
     body: 'I went to Washington University in St. Louis — no, it’s not in Seattle, nor is it in Washington. It may sound like the middle of nowhere. But we do have a pretty great monument: the Gateway Arch — and, believe it or not, it’s a NATIONAL PARK!',
-    cover: 'assets/images/stl-web/stl-00-first-day.jpg',
+    cover: 'assets/images/stl-web/stl-00-gateway-arch.jpg',
     gallery: [
-      'assets/images/stl-web/stl-00-first-day.jpg',
+      'assets/images/stl-web/stl-00-gateway-arch.jpg',
       'assets/images/stl-web/6A73D19B-9DAF-46A3-BA4F-8134E45D9F9C.jpg',
       'assets/images/stl-web/IMG_3578.jpg',
       'assets/images/stl-web/IMG_3802.jpg',
