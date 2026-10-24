@@ -65,6 +65,7 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 - The globe itself is the timeline and archive interface; do not add a separate long scrolling timeline.
 - Each story point contains a city/region, date or date range, one-line memory or theme, image(s), tags, and optional Google Maps links.
 - Selecting a point opens a same-page overlay card, activates its right-side timeline row, and focuses the globe on the location. It never navigates to a new detail page.
+- Do not add a close icon to a story card. A click on the globe's non-marker area or elsewhere outside a card/timeline should dissolve the card and restore the globe; clicking another point switches directly to the new card.
 - Current real story points are San Francisco (intro) and Rome (field image); add more only when Junyi supplies the actual travel data.
 - Group story points primarily by **region** (for example North America, Europe, East Asia) because visitors explore spatially. Use themes such as photography, food, work, walking, and architecture as secondary tags within each place card.
 

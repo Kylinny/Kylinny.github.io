@@ -165,7 +165,6 @@ document.querySelectorAll('[data-place]').forEach((button) => button.addEventLis
 }));
 
 const storyCard = document.querySelector('#story-card');
-const storyClose = document.querySelector('#story-close');
 const storyKicker = document.querySelector('#story-kicker');
 const storyTitle = document.querySelector('#story-title');
 const storyImage = document.querySelector('#story-image');
@@ -205,7 +204,6 @@ function focusStory(story) {
   openStory(story);
 }
 function closeStory() { clearInterval(storyImageTimer); targetZoom = 1; storyCard.classList.remove('open'); storyCard.setAttribute('aria-hidden', 'true'); document.querySelector('.hero').classList.remove('story-open'); }
-storyClose.addEventListener('click', closeStory);
 document.querySelectorAll('.timeline-item').forEach((item) => item.addEventListener('click', () => {
   const story = stories.find((candidate) => candidate.id === item.dataset.story);
   if (story) focusStory(story);
@@ -217,6 +215,14 @@ shell.addEventListener('pointerup', (event) => {
   const clicked = markerPositions.find((marker) => Math.hypot(marker.x - event.offsetX, marker.y - event.offsetY) < 28);
   dragging = false;
   if (clicked) focusStory(clicked.story);
+});
+document.addEventListener('pointerdown', (event) => {
+  if (!storyCard.classList.contains('open') || storyCard.contains(event.target) || event.target.closest('.timeline-item')) return;
+  if (event.target === canvas) {
+    const hitMarker = markerPositions.some((marker) => Math.hypot(marker.x - event.offsetX, marker.y - event.offsetY) < 28);
+    if (hitMarker) return;
+  }
+  closeStory();
 });
 window.addEventListener('resize', resize);
 resize(); draw();
