@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Amy Yao — personal archive, field notes, and places." />
+    <title>AMY YAO — Personal Archive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="grain"></div>
+    <div class="entry-screen" id="entry-screen" aria-label="Welcome screen">
+      <p class="system-label">PERSONAL ARCHIVE / 01</p>
+      <div class="welcome-wrap" aria-label="Welcome">
+        <span class="welcome-shadow">WELCOME</span>
+        <h1 class="welcome" data-text="WELCOME">WELCOME</h1>
+        <span class="byte byte-a">01101001</span>
+        <span class="byte byte-b">SYN / 01</span>
+        <span class="byte byte-c">11000010</span>
+      </div>
+      <button class="enter" id="enter-site"><span>ENTER ARCHIVE</span><i>↘</i></button>
+      <p class="scroll-prompt">OR SCROLL TO INITIALIZE</p>
+    </div>
+
+    <main id="archive" aria-hidden="true">
+      <nav class="nav">
+        <a class="wordmark" href="#top">A<span>Y</span></a>
+        <div class="nav-links">
+          <a href="#identity">IDENTITY</a><a href="#experience">LOG</a><a href="#world">WORLD</a>
+        </div>
+        <span class="status"><i></i> ONLINE</span>
+      </nav>
+
+      <section class="hero" id="top">
+        <p class="eyebrow">001 — INDEPENDENT HUMAN / DIGITAL EXPLORER</p>
+        <h2>MAKING SENSE<br />OF THE <em>UNKNOWN.</em></h2>
+        <div class="hero-footer">
+          <p>A personal index of work, observations,<br />and coordinates worth remembering.</p>
+          <a class="down-link" href="#identity">SCROLL TO DECODE <span>↓</span></a>
+        </div>
+        <div class="orbital-mark" aria-hidden="true"><span></span><span></span><b></b></div>
+      </section>
+
+      <section class="identity section" id="identity">
+        <div class="section-index">/ 01</div>
+        <div class="section-title"><p>IDENTITY</p><span>PROFILE_</span></div>
+        <div class="identity-grid">
+          <div class="portrait">
+            <div class="portrait-scan"></div>
+            <div class="portrait-ui top-ui">SUBJECT: AMY YAO</div>
+            <div class="portrait-ui bottom-ui">IMAGE SIGNAL / REPLACE WITH YOUR PHOTO</div>
+            <div class="portrait-shape"></div>
+          </div>
+          <div class="bio">
+            <p class="bio-lead">Hi, I’m Amy — a curious builder drawn to people, ideas, and the places between them.</p>
+            <p>This is my evolving archive: experiences that shaped me, small discoveries I want to keep, and field notes from the world.</p>
+            <div class="bio-data">
+              <div><span>BASED IN</span><b>CALIFORNIA, US</b></div>
+              <div><span>CURRENT MODE</span><b>EXPLORING / BUILDING</b></div>
+              <div><span>CHANNEL</span><b>HELLO@YOURDOMAIN.COM</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="experience section" id="experience">
+        <div class="section-index">/ 02</div>
+        <div class="section-title"><p>EXPERIENCE.LOG</p><span>SELECTED SIGNALS_</span></div>
+        <div class="log-list">
+          <article class="log-item"><span class="log-year">NOW</span><h3>BUILDING AT THE INTERSECTION OF<br />TECHNOLOGY &amp; HUMAN CURIOSITY</h3><p>Independent projects, experiments, and ideas in motion.</p><i>↗</i></article>
+          <article class="log-item"><span class="log-year">2025</span><h3>RESEARCH, LEARNING &amp;<br />NEW SYSTEMS</h3><p>A growing record of work that asks better questions.</p><i>↗</i></article>
+          <article class="log-item"><span class="log-year">∞</span><h3>THE FIELD NOTES<br />CONTINUE</h3><p>Photography, travel, and meaningful details from the real world.</p><i>↗</i></article>
+        </div>
+      </section>
+
+      <section class="world section" id="world">
+        <div class="section-index">/ 03</div>
+        <div class="section-title"><p>WORLD.EXE</p><span>FIELD NOTES / 12 LOCATIONS_</span></div>
+        <div class="world-grid">
+          <div class="globe-shell" id="globe-shell">
+            <canvas id="globe" aria-label="Interactive decorative globe"></canvas>
+            <span class="globe-hint">DRAG TO ROTATE · CLICK A SIGNAL</span>
+          </div>
+          <div class="world-copy">
+            <p class="eyebrow">COORDINATE ARCHIVE</p>
+            <h3>PLACES THAT<br /><em>STAY WITH ME.</em></h3>
+            <p>Travel stories, photo sequences, and a living index of places I recommend.</p>
+            <div class="location-list">
+              <button data-place="TOKYO"><span>35.6762° N</span> TOKYO <i>+</i></button>
+              <button data-place="CALIFORNIA"><span>36.7783° N</span> CALIFORNIA <i>+</i></button>
+              <button data-place="SEOUL"><span>37.5665° N</span> SEOUL <i>+</i></button>
+            </div>
+            <a class="line-button" href="https://www.google.com/maps" target="_blank" rel="noreferrer">OPEN GOOGLE MAPS REVIEWS <span>↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <footer><span>© 2026 AMY YAO</span><span>BUILT AS A LIVING ARCHIVE</span><a href="#top">BACK TO TOP ↑</a></footer>
+    </main>
+    <div class="place-toast" id="place-toast" role="status"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
