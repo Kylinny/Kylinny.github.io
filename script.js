@@ -70,7 +70,6 @@ const stories = [
     kicker: 'HOME BASE', timestamp: '2023.05—08 · 2024.10—PRESENT', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁 And I LOVE fog',
     cover: 'assets/images/sf-00-golden-gate.jpg',
     gallery: ['assets/images/sf-web/sf-00-golden-gate.jpg', 'assets/images/sf-web/sf-01.jpg', 'assets/images/sf-web/sf-02.jpg', 'assets/images/sf-web/sf-03.jpg', 'assets/images/sf-web/sf-gallery-01.jpg', 'assets/images/sf-web/sf-gallery-02.jpg', 'assets/images/sf-web/sf-gallery-03.jpg', 'assets/images/sf-web/sf-gallery-04.jpg', 'assets/images/sf-web/sf-gallery-05.jpg', 'assets/images/sf-web/sf-gallery-06.jpg'],
-    compactPhotos: ['assets/images/sf-web/sf-01.jpg'],
     captions: {
       'assets/images/sf-web/sf-00-golden-gate.jpg': 'I took this shot while interning at PlayStation in the summer of 2023. It was my first time in the Bay Area, and I absolutely fell in love.',
       'assets/images/sf-web/sf-02.jpg': 'View from Alcatraz Island.',
@@ -356,12 +355,6 @@ function openGallery() {
     figure.className = 'gallery-item';
     const image = document.createElement('img');
     image.alt = `${activeStory.name} gallery image ${index + 1}`;
-    image.addEventListener('load', () => {
-      const ratio = image.naturalWidth / image.naturalHeight;
-      if (activeStory.compactPhotos?.includes(source)) figure.classList.add('is-compact');
-      else if (ratio > 1.22) figure.classList.add('is-wide');
-      else if (ratio < .86) figure.classList.add('is-portrait');
-    }, { once: true });
     image.src = source;
     figure.append(image);
     if (caption) {
