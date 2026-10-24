@@ -5,7 +5,7 @@
 .welcome::before { display: none; }
 .welcome::after { content: '|'; position: static; inset: auto; display: inline; margin-left: .1em; color: var(--cyan); -webkit-text-stroke: 0; clip-path: none; opacity: 1; font-weight: 300; animation: typing-caret 1.55s steps(1, end) infinite; }
 .hero-globe { touch-action: none; }
-.orbit-label { position:absolute; top:17%; left:50%; color:rgba(179,242,255,.76); font:8px "DM Mono",monospace; letter-spacing:.13em; white-space:nowrap; pointer-events:none; text-shadow:0 0 12px rgba(87,223,255,.45); animation:orbit-label-float 5s ease-in-out infinite; }
+.orbit-label { position:absolute; top:17%; left:50%; width:min(520px,84vw); color:rgba(179,242,255,.76); font:8px/1.55 "DM Mono",monospace; letter-spacing:.13em; text-align:center; pointer-events:none; text-shadow:0 0 12px rgba(87,223,255,.45); animation:orbit-label-float 5s ease-in-out infinite; }
 .enter { width:36px; height:44px; padding:0; display:grid; place-items:center; }.enter .chevrons { display:flex; flex-direction:column; align-items:center; gap:3px; }.enter .chevrons i { display:block; width:16px; height:16px; margin:0; border-right:2px solid var(--cyan); border-bottom:2px solid var(--cyan); transform:rotate(45deg); animation:chevron-fall 1.45s ease-in-out infinite; }.enter .chevrons i:nth-child(2) { animation-delay:.14s; opacity:.72; }.enter .chevrons i:nth-child(3) { animation-delay:.28s; opacity:.42; }
 .nav-links, .status { display: none; }
 .hero { min-height: 100vh; height: 100vh; }

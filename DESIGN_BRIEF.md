@@ -80,7 +80,7 @@ The globe is the primary interaction and the opening site experience after the w
 ### Globe interaction
 
 - Dragging the globe supports unlimited horizontal 360° rotation and a controlled vertical tilt; timeline selections still smoothly return the view to the chosen location. When idle, the globe makes one complete rotation every 24 hours, starting from the San Francisco orientation. A separate restrained atmospheric glint travels the rim as a visible activity cue without speeding up the globe.
-- A small floating label above the atmospheric glint reads `EARTH ROTATION / 1 REVOLUTION PER 24H`, explaining the real-time self-rotation without adding a UI panel.
+- A small floating label above the atmospheric glint reads `THIS IS A LIVING EARTH, ROTATING AT ITS REAL-WORLD PACE.`, explaining the real-time self-rotation without adding a UI panel.
 
 - A 3D-style or canvas globe supports drag to rotate and scroll/pinch to zoom where practical.
 - The only globe interaction label is `ROTATE * SELECT`.
