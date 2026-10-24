@@ -15,12 +15,19 @@ function typeWelcome(text) {
   typeNextCharacter();
 }
 typingTimer = setTimeout(() => typeWelcome(welcomeText), 500);
-const idlePromptTimer = setTimeout(() => {
-  if (!entry.classList.contains('is-gone')) typeWelcome('what are you waiting for');
-}, 10000);
+let idlePromptTimer;
+let followUpPromptTimer;
+idlePromptTimer = setTimeout(() => {
+  if (entry.classList.contains('is-gone')) return;
+  typeWelcome('Hello?');
+  followUpPromptTimer = setTimeout(() => {
+    if (!entry.classList.contains('is-gone')) typeWelcome('Are you there?');
+  }, 15000);
+}, 15000);
 const enter = () => {
   clearTimeout(typingTimer);
   clearTimeout(idlePromptTimer);
+  clearTimeout(followUpPromptTimer);
   entry.classList.add('is-gone');
   archive.setAttribute('aria-hidden', 'false');
   focusStory(stories.find((story) => story.id === 'sf'));
