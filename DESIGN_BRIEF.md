@@ -42,8 +42,8 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 - Main word: `WELCOME`, typed out one character at a time with a blinking terminal-style caret; it must not appear as a complete word on load.
 - The word is paired with a small number of blinking lights, sparse archive labels, and restrained byte strings.
 - Background is black-to-deep-navy, with a faint perspective grid.
-- A blinking down arrow stays in the lower-right corner to guide the visitor.
-- Visitor can click the arrow or scroll to enter the main site.
+- Three stacked, blinking down chevrons stay in the lower-right corner as the only visual guide; do not include “scroll to enter” text.
+- Visitor can click the chevrons or scroll to enter the main site.
 - Entering should dissolve the welcome screen into the globe view rather than navigate to a conventional hero.
 
 ### Main content order
