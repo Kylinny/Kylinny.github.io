@@ -48,8 +48,8 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 
 ### Main content order
 
-1. **Full-screen globe** — the only main site experience after the welcome dissolve. It is a slowly rotating night-time Earth horizon with a subtle animated star field, city-light shimmer, and blue atmospheric rim.
-2. **Floating story points** — each documented location floats above the globe with a light and fine connector line. Clicking it opens its content in an overlay card on the same page; there are no detail pages or conventional section navigation.
+1. **Floating globe + right timeline** — after the welcome dissolve, a slowly rotating night-time Earth sits on the left. A fixed vertical timeline sits on the right, ordered by date. The Earth has a subtle animated star field, city-light shimmer, and blue atmospheric rim.
+2. **Floating story points** — clicking a point or its timeline item smoothly zooms the Earth to that region. The globe dims to a semi-transparent background and that location's content card floats over the left side; there are no detail pages or conventional section navigation.
 
 ## Content principles
 
@@ -64,7 +64,7 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 
 - The globe itself is the timeline and archive interface; do not add a separate long scrolling timeline.
 - Each story point contains a city/region, date or date range, one-line memory or theme, image(s), tags, and optional Google Maps links.
-- Selecting a point opens a same-page overlay card. It never navigates to a new detail page.
+- Selecting a point opens a same-page overlay card, activates its right-side timeline row, and focuses the globe on the location. It never navigates to a new detail page.
 - Current real story points are San Francisco (intro) and Rome (field image); add more only when Junyi supplies the actual travel data.
 - Group story points primarily by **region** (for example North America, Europe, East Asia) because visitors explore spatially. Use themes such as photography, food, work, walking, and architecture as secondary tags within each place card.
 

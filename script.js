@@ -34,6 +34,9 @@ const stories = [
   },
 ];
 let rotation = 2.1366; // San Francisco faces the viewer on first load.
+let targetRotation = rotation;
+let globeZoom = 1;
+let targetZoom = 1;
 let dragging = false;
 let lastX = 0;
 let stars = [];
@@ -96,7 +99,7 @@ function drawStars(width, height, now) {
 }
 
 function drawGlobe(width, height, now) {
-  const radius = Math.max(width * .52, height * .82);
+  const radius = Math.max(width * .52, height * .82) * globeZoom;
   const cx = width * .58;
   const cy = height * 1.08;
   const glow = ctx.createRadialGradient(cx, cy - radius * .88, radius * .1, cx, cy - radius * .88, radius * 1.25);
@@ -141,7 +144,11 @@ function drawStoryPoints(planet, now) {
 
 function draw(now = 0) {
   const width = canvas.clientWidth; const height = canvas.clientHeight;
-  if (!dragging) rotation += .00003;
+  if (!dragging) {
+    const rotationDifference = targetRotation - rotation;
+    rotation += Math.abs(rotationDifference) > .0003 ? rotationDifference * .028 : .00003;
+  }
+  globeZoom += (targetZoom - globeZoom) * .035;
   ctx.clearRect(0, 0, width, height); drawStars(width, height, now); drawStoryPoints(drawGlobe(width, height, now), now);
   requestAnimationFrame(draw);
 }
@@ -189,16 +196,27 @@ function openStory(story) {
     }, 4600);
   } else { storyImage.hidden = true; storyImage.removeAttribute('src'); }
   storyCard.classList.add('open'); storyCard.setAttribute('aria-hidden', 'false');
+  document.querySelector('.hero').classList.add('story-open');
+  document.querySelectorAll('.timeline-item').forEach((item) => item.classList.toggle('active', item.dataset.story === story.id));
 }
-function closeStory() { clearInterval(storyImageTimer); storyCard.classList.remove('open'); storyCard.setAttribute('aria-hidden', 'true'); }
+function focusStory(story) {
+  targetRotation = -story.lon * Math.PI / 180;
+  targetZoom = 1.2;
+  openStory(story);
+}
+function closeStory() { clearInterval(storyImageTimer); targetZoom = 1; storyCard.classList.remove('open'); storyCard.setAttribute('aria-hidden', 'true'); document.querySelector('.hero').classList.remove('story-open'); }
 storyClose.addEventListener('click', closeStory);
+document.querySelectorAll('.timeline-item').forEach((item) => item.addEventListener('click', () => {
+  const story = stories.find((candidate) => candidate.id === item.dataset.story);
+  if (story) focusStory(story);
+}));
 
 shell.addEventListener('pointerdown', (event) => { dragging = true; lastX = event.clientX; shell.setPointerCapture(event.pointerId); });
-shell.addEventListener('pointermove', (event) => { if (dragging) { rotation += (event.clientX - lastX) * .008; lastX = event.clientX; } });
+shell.addEventListener('pointermove', (event) => { if (dragging) { rotation += (event.clientX - lastX) * .008; targetRotation = rotation; lastX = event.clientX; } });
 shell.addEventListener('pointerup', (event) => {
   const clicked = markerPositions.find((marker) => Math.hypot(marker.x - event.offsetX, marker.y - event.offsetY) < 28);
   dragging = false;
-  if (clicked) openStory(clicked.story);
+  if (clicked) focusStory(clicked.story);
 });
 window.addEventListener('resize', resize);
 resize(); draw();
