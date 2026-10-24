@@ -55,6 +55,7 @@ const stories = [
     gallery: ['assets/images/sf-00-golden-gate.jpg', 'assets/images/sf-01.jpg', 'assets/images/sf-02.jpg', 'assets/images/sf-03.jpg', 'assets/images/sf-gallery-01.jpg', 'assets/images/sf-gallery-02.jpg', 'assets/images/sf-gallery-03.jpg', 'assets/images/sf-gallery-04.jpg', 'assets/images/sf-gallery-05.jpg', 'assets/images/sf-gallery-06.jpg'],
     captions: {
       'assets/images/sf-00-golden-gate.jpg': 'I took this shot while interning at PlayStation in the summer of 2023. It was my first time in the Bay Area, and I absolutely fell in love.',
+      'assets/images/sf-02.jpg': 'View from Alcatraz Island.',
     },
     tags: ['HOME BASE', 'UBER', 'NOW'],
   },
