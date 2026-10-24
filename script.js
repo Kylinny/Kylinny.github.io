@@ -60,6 +60,7 @@ const stories = [
     ],
     captions: {
       'assets/images/stl-web/stl-00-first-day.jpg': 'My first day on campus.',
+      'assets/images/stl-web/IMG_3578.jpg': 'South 40 was a dream. I lived in Nemerov.',
     },
     tags: ['WASHINGTON UNIVERSITY', 'MIDWEST', '桃源'],
   },
