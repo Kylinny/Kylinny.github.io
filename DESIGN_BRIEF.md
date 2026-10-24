@@ -50,6 +50,7 @@ The site opens as a full-screen entry experience, not a conventional navigation 
 
 1. **Floating globe + right timeline** — after the welcome dissolve, a slowly rotating night-time Earth sits on the left. A fixed vertical timeline sits on the right, ordered by date. The Earth has a subtle animated star field, city-light shimmer, and blue atmospheric rim.
 2. **Floating story points** — clicking a point or its timeline item smoothly zooms the Earth to that region. The globe dims to a semi-transparent background and that location's content card floats over the left side; there are no detail pages or conventional section navigation.
+3. **Default state** — immediately after the welcome screen dissolves, focus and open the San Francisco story card. It is the current home-base introduction.
 
 ## Content principles
 
@@ -109,6 +110,7 @@ Each same-page card should contain:
 - Rome story timestamp: `2025.09`. Story images: `assets/images/profile-rome.jpg` (St. Peter's Square) and `assets/images/rome-colosseum.jpg` (Colosseum). The card is image-led, with no descriptive body copy; the two images dissolve between one another automatically.
 - Photos in story cards must preserve their original aspect ratio and complete composition; never use cover-cropping. Place them in a fixed rectangular 4:3 frame with deep-blue letterboxing when necessary.
 - San Francisco story timestamp: `2024.10—PRESENT`.
+- San Francisco story images: `assets/images/sf-01.jpg`, `assets/images/sf-02.jpg`, and `assets/images/sf-03.jpg`; dissolve automatically while the SF card is open.
 - Placeholder text that must be replaced before public release:
   - biography and current location
   - dated journey entries

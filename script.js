@@ -9,7 +9,11 @@ function typeWelcome() {
   if (typedCharacters < welcomeText.length) setTimeout(typeWelcome, 130);
 }
 setTimeout(typeWelcome, 500);
-const enter = () => { entry.classList.add('is-gone'); archive.setAttribute('aria-hidden', 'false'); };
+const enter = () => {
+  entry.classList.add('is-gone');
+  archive.setAttribute('aria-hidden', 'false');
+  focusStory(stories.find((story) => story.id === 'sf'));
+};
 document.querySelector('#enter-site').addEventListener('click', enter);
 window.addEventListener('wheel', (event) => { if (event.deltaY > 5 && !entry.classList.contains('is-gone')) enter(); }, { passive: true });
 window.addEventListener('touchmove', () => { if (!entry.classList.contains('is-gone')) enter(); }, { passive: true, once: true });
@@ -25,7 +29,7 @@ const stories = [
   {
     id: 'sf', name: 'SAN FRANCISCO', lat: 37.7749, lon: -122.4194,
     kicker: 'HOME BASE', timestamp: '2024.10—PRESENT', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁',
-    tags: ['HOME BASE', 'UBER', 'NOW'],
+    images: ['assets/images/sf-01.jpg', 'assets/images/sf-02.jpg', 'assets/images/sf-03.jpg'], tags: ['HOME BASE', 'UBER', 'NOW'],
   },
   {
     id: 'rome', name: 'ROME', lat: 41.9028, lon: 12.4964,
@@ -210,11 +214,12 @@ const storyImageFrame = document.querySelector('#story-image-frame');
 const storyBody = document.querySelector('#story-body');
 const storyTags = document.querySelector('#story-tags');
 let storyImageTimer;
-function showStoryImage(images, index) {
+function showStoryImage(story, index) {
+  const images = story.images;
   storyImage.classList.add('is-dissolving');
   setTimeout(() => {
     storyImage.src = images[index];
-    storyImage.alt = `Field image from Rome, ${index + 1} of ${images.length}`;
+    storyImage.alt = `Field image from ${story.name}, ${index + 1} of ${images.length}`;
     storyImageFrame.hidden = false;
     requestAnimationFrame(() => storyImage.classList.remove('is-dissolving'));
   }, 360);
@@ -228,10 +233,10 @@ function openStory(story) {
   storyTags.replaceChildren(...story.tags.map((tag) => { const label = document.createElement('span'); label.textContent = tag; return label; }));
   if (story.images?.length) {
     let imageIndex = 0;
-    showStoryImage(story.images, imageIndex);
+    showStoryImage(story, imageIndex);
     if (story.images.length > 1) storyImageTimer = setInterval(() => {
       imageIndex = (imageIndex + 1) % story.images.length;
-      showStoryImage(story.images, imageIndex);
+      showStoryImage(story, imageIndex);
     }, 4600);
   } else { storyImageFrame.hidden = true; storyImage.removeAttribute('src'); }
   storyCard.classList.add('open'); storyCard.setAttribute('aria-hidden', 'false');
