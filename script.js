@@ -46,6 +46,7 @@ const stories = [
     cover: 'assets/images/stl-web/stl-00-gateway-arch.jpg',
     gallery: [
       'assets/images/stl-web/stl-00-gateway-arch.jpg',
+      'assets/images/stl-web/stl-00-first-day.jpg',
       'assets/images/stl-web/6A73D19B-9DAF-46A3-BA4F-8134E45D9F9C.jpg',
       'assets/images/stl-web/IMG_3578.jpg',
       'assets/images/stl-web/IMG_3802.jpg',
@@ -57,6 +58,9 @@ const stories = [
       'assets/images/stl-web/IMG_4398.jpg',
       'assets/images/stl-web/IMG_4419.jpg',
     ],
+    captions: {
+      'assets/images/stl-web/stl-00-first-day.jpg': 'My first day on campus.',
+    },
     tags: ['WASHINGTON UNIVERSITY', 'MIDWEST', '桃源'],
   },
   {
