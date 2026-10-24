@@ -108,7 +108,7 @@ Each same-page card should contain:
 - Homepage assets: `index.html`, `styles.css`, `script.js`.
 - Current globe is a lightweight custom canvas interaction to avoid a heavy dependency for the first release.
 - Rome story timestamp: `2025.09`. Story images: `assets/images/profile-rome.jpg` (St. Peter's Square) and `assets/images/rome-colosseum.jpg` (Colosseum). The card is image-led, with no descriptive body copy; the two images dissolve between one another automatically.
-- Photos in story cards must preserve their original aspect ratio and complete composition; never use cover-cropping. Place them in a fixed rectangular 4:3 frame with deep-blue letterboxing when necessary.
+- Photos in story cards must preserve their original aspect ratio and complete composition; never use cover-cropping or a visible photo frame. They should float directly in the semi-transparent card and dissolve between images.
 - San Francisco story timestamp: `2024.10—PRESENT`.
 - San Francisco story images: `assets/images/sf-01.jpg`, `assets/images/sf-02.jpg`, and `assets/images/sf-03.jpg`; dissolve automatically while the SF card is open.
 - Placeholder text that must be replaced before public release:
