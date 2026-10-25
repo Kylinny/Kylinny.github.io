@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="profile.css" />
     <link rel="stylesheet" href="reboot.css" />
-    <link rel="stylesheet" href="single-globe.css?v=20261024-4" />
+    <link rel="stylesheet" href="single-globe.css?v=20261024-5" />
   </head>
   <body>
     <div class="grain"></div>
@@ -112,9 +112,14 @@
     <section class="gallery-view" id="gallery-view" aria-hidden="true">
       <button class="gallery-back" id="gallery-back" type="button" aria-label="Return to globe"><span aria-hidden="true">←</span><span class="gallery-back-label">GLOBE</span></button>
       <div class="gallery-heading"><p id="gallery-kicker"></p><h2 id="gallery-title"></h2></div>
+      <div class="city-globe-module" id="city-globe-module" hidden>
+        <canvas id="city-globe" aria-label="Interactive San Francisco photo globe"></canvas>
+        <p id="city-globe-status">ROTATE · SELECT A LIGHT</p>
+        <div class="city-globe-preview" id="city-globe-preview" hidden><img id="city-globe-preview-image" alt="" /><span id="city-globe-preview-caption"></span></div>
+      </div>
       <div class="gallery-grid" id="gallery-grid"></div>
     </section>
     <div class="place-toast" id="place-toast" role="status"></div>
-    <script src="script.js?v=20261024-7"></script>
+    <script src="script.js?v=20261024-8"></script>
   </body>
 </html>
