@@ -361,16 +361,18 @@ function drawStoryPoints(planet, now) {
   stories.forEach((story, index) => {
     const marker = point(story.lat, story.lon, planet.radius, planet.cx, planet.cy);
     if (marker.z < 0) return;
+    const isNow = story.id === 'sf';
+    const accent = isNow ? { line: 'rgba(255, 204, 104, .82)', fill: '#ffe09a', glow: '#ffc65e', text: '#ffe7ad' } : { line: 'rgba(140, 242, 255, .72)', fill: '#b8fbff', glow: '#76efff', text: '#b9f6ff' };
     const lift = 72 + Math.sin(now * .0022 + index) * 7;
     const labelY = marker.y - lift;
-    ctx.strokeStyle = 'rgba(140, 242, 255, .72)'; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+    ctx.strokeStyle = accent.line; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
     ctx.beginPath(); ctx.moveTo(marker.x, marker.y); ctx.lineTo(marker.x, labelY + 8); ctx.stroke(); ctx.setLineDash([]);
     const pulse = 4 + (Math.sin(now * .003 + index) + 1) * 2;
     ctx.beginPath(); ctx.arc(marker.x, marker.y, pulse, 0, Math.PI * 2);
-    ctx.fillStyle = '#b8fbff'; ctx.shadowColor = '#76efff'; ctx.shadowBlur = 18; ctx.fill(); ctx.shadowBlur = 0;
-    ctx.fillStyle = '#b9f6ff'; ctx.font = '10px "DM Mono", monospace'; ctx.fillText(story.name, marker.x + 12, labelY + 4);
-    ctx.fillStyle = 'rgba(185, 246, 255, .65)'; ctx.font = '8px "DM Mono", monospace'; ctx.fillText('OPEN NOTE', marker.x + 12, labelY + 18);
-    markerPositions.push({ story, x: marker.x, y: marker.y });
+    ctx.fillStyle = accent.fill; ctx.shadowColor = accent.glow; ctx.shadowBlur = 18; ctx.fill(); ctx.shadowBlur = 0;
+    ctx.fillStyle = accent.text; ctx.font = '10px "DM Mono", monospace'; ctx.fillText(story.name, marker.x + 12, labelY + 4);
+    const labelWidth = ctx.measureText(story.name).width;
+    markerPositions.push({ story, x: marker.x, y: marker.y, labelX: marker.x + 12, labelY: labelY - 8, labelWidth, labelHeight: 20 });
   });
 }
 
@@ -539,7 +541,7 @@ shell.addEventListener('pointermove', (event) => {
   lastY = event.clientY;
 });
 shell.addEventListener('pointerup', (event) => {
-  const clicked = markerPositions.find((marker) => Math.hypot(marker.x - event.offsetX, marker.y - event.offsetY) < 28);
+  const clicked = markerPositions.find((marker) => Math.hypot(marker.x - event.offsetX, marker.y - event.offsetY) < 28 || (event.offsetX >= marker.labelX - 7 && event.offsetX <= marker.labelX + marker.labelWidth + 7 && event.offsetY >= marker.labelY && event.offsetY <= marker.labelY + marker.labelHeight));
   dragging = false;
   if (clicked) focusStory(clicked.story);
 });
