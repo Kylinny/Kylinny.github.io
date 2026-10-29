@@ -128,7 +128,7 @@ const stories = [
   },
   {
     id: 'sf', name: 'SAN FRANCISCO', country: 'USA', lat: 37.7749, lon: -122.4194,
-    kicker: 'HOME BASE', timestamp: '2023.05—08 · 2024.10—PRESENT', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁 And I LOVE fog',
+    kicker: 'HOME BASE', timestamp: '2023.05—08 · 2024.10—PRESENT', body: 'Hey, I’m Junyi（君仪）. Currently working at Uber in San Francisco 🌁 And I LOVE fog',
     cover: 'assets/images/sf-web/sf-00-golden-gate.jpg',
     gallery: ['assets/images/sf-web/sf-00-golden-gate.jpg', 'assets/images/sf-web/sf-01.jpg', 'assets/images/sf-web/sf-02.jpg', 'assets/images/sf-web/sf-03.jpg', 'assets/images/sf-web/sf-gallery-01.jpg', 'assets/images/sf-web/sf-gallery-02.jpg', 'assets/images/sf-web/sf-gallery-03.jpg', 'assets/images/sf-web/sf-gallery-04.jpg', 'assets/images/sf-web/sf-gallery-05.jpg', 'assets/images/sf-web/sf-gallery-06.jpg', 'assets/images/sf-web/sf-gallery-07.jpg', 'assets/images/sf-web/sf-gallery-08.jpg', 'assets/images/sf-web/sf-gallery-09.jpg', 'assets/images/sf-web/sf-gallery-10.jpg', 'assets/images/sf-web/sf-gallery-11.jpg', 'assets/images/sf-web/sf-gallery-12.jpg'],
     captions: {
