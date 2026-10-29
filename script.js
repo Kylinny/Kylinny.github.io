@@ -148,6 +148,7 @@ const stories = [
   {
     id: 'rome', name: 'ROME', country: 'ITALY', lat: 41.9028, lon: 12.4964,
     timestamp: '2025.09',
+    body: '条条大路通罗马',
     cover: 'assets/images/profile-rome.jpg', gallery: ['assets/images/profile-rome.jpg', 'assets/images/rome-colosseum.jpg'],
     captions: {
       'assets/images/profile-rome.jpg': '2025 was a Jubilee Year in the Vatican. I was so lucky to be here for this once-in-every-25-years occasion.',
