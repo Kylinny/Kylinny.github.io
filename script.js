@@ -153,6 +153,7 @@ const stories = [
       'assets/images/profile-rome.jpg': '2025 was a Jubilee Year in the Vatican. I was so lucky to be here for this once-in-every-25-years occasion.',
     },
     tags: ['PHOTOGRAPHY', 'TRAVEL', 'EUROPE'],
+    savedListUrl: 'https://maps.app.goo.gl/wivcK9Ua8eEe4rYR7',
   },
 ];
 let rotation = 2.1366; // San Francisco faces the viewer on first load.
