@@ -39,13 +39,6 @@ window.addEventListener('touchmove', () => { if (!entry.classList.contains('is-g
 const canvas = document.querySelector('#globe');
 const ctx = canvas.getContext('2d');
 const shell = document.querySelector('#globe-shell');
-const cityGlobeModule = document.querySelector('#city-globe-module');
-const cityCanvas = document.querySelector('#city-globe');
-const cityCtx = cityCanvas.getContext('2d');
-const cityGlobeStatus = document.querySelector('#city-globe-status');
-const cityGlobePreview = document.querySelector('#city-globe-preview');
-const cityGlobePreviewImage = document.querySelector('#city-globe-preview-image');
-const cityGlobePreviewCaption = document.querySelector('#city-globe-preview-caption');
 const EARTH_DAY_MS = 24 * 60 * 60 * 1000;
 const locations = [
   { name: 'ST. LOUIS', lat: 38.627, lon: -90.1994 },
@@ -71,6 +64,33 @@ const stories = [
       'assets/images/stl-web/IMG_4088.jpg',
       'assets/images/stl-web/IMG_4398.jpg',
       'assets/images/stl-web/IMG_4419.jpg',
+      'assets/images/stl-web/stl-gallery-12.jpg',
+      'assets/images/stl-web/stl-gallery-13.jpg',
+      'assets/images/stl-web/stl-gallery-14.jpg',
+      'assets/images/stl-web/stl-gallery-15.jpg',
+      'assets/images/stl-web/stl-gallery-16.jpg',
+      'assets/images/stl-web/stl-gallery-17.jpg',
+      'assets/images/stl-web/stl-gallery-18.jpg',
+      'assets/images/stl-web/stl-gallery-19.jpg',
+      'assets/images/stl-web/stl-gallery-20.jpg',
+      'assets/images/stl-web/stl-gallery-21.jpg',
+      'assets/images/stl-web/stl-gallery-22.jpg',
+      'assets/images/stl-web/stl-gallery-23.jpg',
+      'assets/images/stl-web/stl-gallery-24.jpg',
+      'assets/images/stl-web/stl-gallery-25.jpg',
+      'assets/images/stl-web/stl-gallery-26.jpg',
+      'assets/images/stl-web/stl-gallery-27.jpg',
+      'assets/images/stl-web/stl-gallery-28.jpg',
+      'assets/images/stl-web/stl-gallery-29.jpg',
+      'assets/images/stl-web/stl-gallery-30.jpg',
+      'assets/images/stl-web/stl-gallery-31.jpg',
+      'assets/images/stl-web/stl-gallery-32.jpg',
+      'assets/images/stl-web/stl-gallery-33.jpg',
+      'assets/images/stl-web/stl-gallery-34.jpg',
+      'assets/images/stl-web/stl-gallery-35.jpg',
+      'assets/images/stl-web/stl-gallery-36.jpg',
+      'assets/images/stl-web/stl-gallery-37.jpg',
+      'assets/images/stl-web/stl-gallery-38.jpg',
     ],
     captions: {
       'assets/images/stl-web/stl-00-first-day.jpg': 'My first day on campus.',
@@ -78,6 +98,31 @@ const stories = [
       'assets/images/stl-web/IMG_3802.jpg': 'If COVID had never happened, I could’ve practiced Broadway makeup on my own face instead of this mannequin.',
       'assets/images/stl-web/IMG_3242.jpg': 'Orientation Day — with my sophomore-year roommate on the right.',
       'assets/images/stl-web/IMG_4419.jpg': 'Forest Park is always the best.',
+      'assets/images/stl-web/stl-gallery-12.jpg': 'Missouri Botanical Garden.',
+      'assets/images/stl-web/stl-gallery-13.jpg': 'My first internship, at Edward Jones — great people, a great time, and my corporate dream era.',
+      'assets/images/stl-web/stl-gallery-14.jpg': 'Missouri History Museum.',
+      'assets/images/stl-web/stl-gallery-15.jpg': 'Creve Coeur Park Lantern Festival.',
+      'assets/images/stl-web/stl-gallery-16.jpg': 'And my lantern.',
+      'assets/images/stl-web/stl-gallery-17.jpg': 'The view outside my kitchen in fall.',
+      'assets/images/stl-web/stl-gallery-18.jpg': 'I’ll remember this semester forever.',
+      'assets/images/stl-web/stl-gallery-19.jpg': '2023 WILD.',
+      'assets/images/stl-web/stl-gallery-20.jpg': 'The last time I led International Orientation. Senior year started—and I felt younger talking to the fresh faces.',
+      'assets/images/stl-web/stl-gallery-21.jpg': 'First and last time at a balloon festival.',
+      'assets/images/stl-web/stl-gallery-22.jpg': 'You’ll never know how much I love this.',
+      'assets/images/stl-web/stl-gallery-23.jpg': 'Mommy is here.',
+      'assets/images/stl-web/stl-gallery-24.jpg': "Dr. G’s house is so nice.",
+      'assets/images/stl-web/stl-gallery-25.jpg': 'I only go to the library for the sofa bed in the basement.',
+      'assets/images/stl-web/stl-gallery-26.jpg': 'I literally had 卤肉饭 every single day.',
+      'assets/images/stl-web/stl-gallery-27.jpg': 'The hardest CS class ever. Thank you, Juba.',
+      'assets/images/stl-web/stl-gallery-28.jpg': 'Another picture of 卤肉饭 to show my love for 卤肉 and 卤蛋.',
+      'assets/images/stl-web/stl-gallery-29.jpg': 'Botanical Garden again with 孟妈妈.',
+      'assets/images/stl-web/stl-gallery-30.jpg': 'Math Lounge could be my private library.',
+      'assets/images/stl-web/stl-gallery-31.jpg': 'I actually studied Buddhism.',
+      'assets/images/stl-web/stl-gallery-32.jpg': 'A total eclipse is a miracle.',
+      'assets/images/stl-web/stl-gallery-34.jpg': 'Reading primary sources is so fun.',
+      'assets/images/stl-web/stl-gallery-36.jpg': "My last math class. I won’t miss you, even if you’re the most handsome math professor, lol.",
+      'assets/images/stl-web/stl-gallery-37.jpg': 'Politics.',
+      'assets/images/stl-web/stl-gallery-38.jpg': 'I miss my car.',
     },
     tags: ['WASHINGTON UNIVERSITY', 'MIDWEST', '桃源'],
   },
@@ -85,21 +130,20 @@ const stories = [
     id: 'sf', name: 'SAN FRANCISCO', country: 'USA', lat: 37.7749, lon: -122.4194,
     kicker: 'HOME BASE', timestamp: '2023.05—08 · 2024.10—PRESENT', body: 'Hey, I’m Junyi. Currently working at Uber in San Francisco 🌁 And I LOVE fog',
     cover: 'assets/images/sf-web/sf-00-golden-gate.jpg',
-    gallery: ['assets/images/sf-web/sf-00-golden-gate.jpg', 'assets/images/sf-web/sf-01.jpg', 'assets/images/sf-web/sf-02.jpg', 'assets/images/sf-web/sf-03.jpg', 'assets/images/sf-web/sf-gallery-01.jpg', 'assets/images/sf-web/sf-gallery-02.jpg', 'assets/images/sf-web/sf-gallery-03.jpg', 'assets/images/sf-web/sf-gallery-04.jpg', 'assets/images/sf-web/sf-gallery-05.jpg', 'assets/images/sf-web/sf-gallery-06.jpg', 'assets/images/sf-web/sf-gallery-07.jpg'],
+    gallery: ['assets/images/sf-web/sf-00-golden-gate.jpg', 'assets/images/sf-web/sf-01.jpg', 'assets/images/sf-web/sf-02.jpg', 'assets/images/sf-web/sf-03.jpg', 'assets/images/sf-web/sf-gallery-01.jpg', 'assets/images/sf-web/sf-gallery-02.jpg', 'assets/images/sf-web/sf-gallery-03.jpg', 'assets/images/sf-web/sf-gallery-04.jpg', 'assets/images/sf-web/sf-gallery-05.jpg', 'assets/images/sf-web/sf-gallery-06.jpg', 'assets/images/sf-web/sf-gallery-07.jpg', 'assets/images/sf-web/sf-gallery-08.jpg', 'assets/images/sf-web/sf-gallery-09.jpg', 'assets/images/sf-web/sf-gallery-10.jpg', 'assets/images/sf-web/sf-gallery-11.jpg', 'assets/images/sf-web/sf-gallery-12.jpg'],
     captions: {
       'assets/images/sf-web/sf-00-golden-gate.jpg': 'I took this shot while interning at PlayStation in the summer of 2023. It was my first time in the Bay Area, and I absolutely fell in love.',
       'assets/images/sf-web/sf-01.jpg': 'Christian rainbow.',
       'assets/images/sf-web/sf-02.jpg': 'View from Alcatraz Island.',
       'assets/images/sf-web/sf-gallery-06.jpg': 'Sunset fishing feels surreal.',
+      'assets/images/sf-web/sf-gallery-08.jpg': 'Volunteering at the Mission Street Fair.',
+      'assets/images/sf-web/sf-gallery-09.jpg': 'My roommate’s cat looks like a squid. We made a meme about it.',
+      'assets/images/sf-web/sf-gallery-10.jpg': 'My legendary Halloween costume.',
+      'assets/images/sf-web/sf-gallery-11.jpg': 'My favorite church.',
+      'assets/images/sf-web/sf-gallery-12.jpg': 'My first Pride Parade. Kudos to PlayStation!',
     },
-    cityPoints: [
-      { label: 'GOLDEN GATE', lat: 37.8199, lon: -122.4783, source: 'assets/images/sf-web/sf-00-golden-gate.jpg' },
-      { label: 'CATHEDRAL', lat: 37.7852, lon: -122.4250, source: 'assets/images/sf-web/sf-01.jpg' },
-      { label: 'ALCATRAZ', lat: 37.8267, lon: -122.4230, source: 'assets/images/sf-web/sf-02.jpg' },
-      { label: 'OCEAN BEACH', lat: 37.7596, lon: -122.5107, source: 'assets/images/sf-web/sf-gallery-06.jpg' },
-      { label: 'SUTRO', lat: 37.7795, lon: -122.5120, source: 'assets/images/sf-web/sf-gallery-07.jpg' },
-    ],
     tags: ['WORK', 'AI THEME PARK', 'CALI'],
+    savedListUrl: 'https://maps.app.goo.gl/KNtHa3E5fuZCCVaCA',
   },
   {
     id: 'rome', name: 'ROME', country: 'ITALY', lat: 41.9028, lon: 12.4964,
@@ -125,13 +169,6 @@ let stars = [];
 let cityLights = [];
 let markerPositions = [];
 let landArcs = [];
-let cityRotation = -.08;
-let cityTilt = -.14;
-let cityDragging = false;
-let cityLastX = 0;
-let cityLastY = 0;
-let cityLastTimestamp = Date.now();
-let cityMarkerPositions = [];
 
 const random = (seed) => {
   const value = Math.sin(seed * 9283.31) * 46271.41;
@@ -166,10 +203,6 @@ function resize() {
   canvas.height = canvas.clientHeight * dpr;
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   makeAtmosphere();
-  const cityDpr = Math.min(window.devicePixelRatio || 1, 2);
-  cityCanvas.width = cityCanvas.clientWidth * cityDpr;
-  cityCanvas.height = cityCanvas.clientHeight * cityDpr;
-  cityCtx.setTransform(cityDpr, 0, 0, cityDpr, 0, 0);
 }
 
 function point(lat, lon, radius, cx, cy, spin = rotation, tilt = globeTilt) {
@@ -181,68 +214,6 @@ function point(lat, lon, radius, cx, cy, spin = rotation, tilt = globeTilt) {
   const tiltedY = y * Math.cos(tilt) - z * Math.sin(tilt);
   const tiltedZ = y * Math.sin(tilt) + z * Math.cos(tilt);
   return { x: cx + radius * x, y: cy - radius * tiltedY, z: tiltedZ };
-}
-
-function cityPoint(lat, lon, radius, cx, cy) {
-  const longitude = (lon + 122.46) * 12 + cityRotation;
-  const latitude = (lat - 37.79) * 17;
-  const x = Math.sin(longitude) * Math.cos(latitude);
-  const y = Math.sin(latitude);
-  const z = Math.cos(longitude) * Math.cos(latitude);
-  const tiltedY = y * Math.cos(cityTilt) - z * Math.sin(cityTilt);
-  const tiltedZ = y * Math.sin(cityTilt) + z * Math.cos(cityTilt);
-  return { x: cx + radius * x, y: cy - radius * tiltedY, z: tiltedZ };
-}
-
-function drawCityPath(points, radius, cx, cy) {
-  let connected = false;
-  cityCtx.beginPath();
-  points.forEach(([lat, lon]) => {
-    const p = cityPoint(lat, lon, radius, cx, cy);
-    if (p.z < -.08) { connected = false; return; }
-    if (!connected) { cityCtx.moveTo(p.x, p.y); connected = true; }
-    else cityCtx.lineTo(p.x, p.y);
-  });
-  cityCtx.stroke();
-}
-
-function drawCityGlobe(now) {
-  if (cityGlobeModule.hidden || !galleryView?.classList.contains('open') || activeStory?.id !== 'sf') return;
-  const width = cityCanvas.clientWidth;
-  const height = cityCanvas.clientHeight;
-  if (!width || !height) return;
-  const timestamp = Date.now();
-  if (!cityDragging) cityRotation += ((timestamp - cityLastTimestamp) / 160000) * Math.PI * 2;
-  cityLastTimestamp = timestamp;
-  const radius = Math.min(width * .34, height * .72);
-  const cx = width * .5;
-  const cy = height * .56;
-  cityCtx.clearRect(0, 0, width, height);
-  const aura = cityCtx.createRadialGradient(cx, cy - radius * .48, radius * .08, cx, cy, radius * 1.48);
-  aura.addColorStop(0, 'rgba(105, 205, 255, .22)'); aura.addColorStop(.5, 'rgba(20, 80, 157, .08)'); aura.addColorStop(1, 'rgba(2, 9, 20, 0)');
-  cityCtx.fillStyle = aura; cityCtx.fillRect(0, 0, width, height);
-  cityCtx.save(); cityCtx.beginPath(); cityCtx.arc(cx, cy, radius, 0, Math.PI * 2); cityCtx.clip();
-  const water = cityCtx.createRadialGradient(cx - radius * .2, cy - radius * .4, 2, cx, cy, radius * 1.1);
-  water.addColorStop(0, '#1a507d'); water.addColorStop(.48, '#0b2546'); water.addColorStop(1, '#020914');
-  cityCtx.fillStyle = water; cityCtx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
-  cityCtx.strokeStyle = 'rgba(155, 218, 243, .26)'; cityCtx.lineWidth = .55;
-  for (let delta = -.09; delta <= .09; delta += .0225) drawCityPath(Array.from({ length: 15 }, (_, index) => [37.79 + delta, -122.54 + index * .012]), radius, cx, cy);
-  for (let delta = -.09; delta <= .09; delta += .024) drawCityPath(Array.from({ length: 15 }, (_, index) => [37.69 + index * .014, -122.46 + delta]), radius, cx, cy);
-  cityCtx.strokeStyle = 'rgba(179, 236, 255, .64)'; cityCtx.lineWidth = 1;
-  drawCityPath([[37.835, -122.51], [37.821, -122.48], [37.811, -122.478], [37.796, -122.505], [37.774, -122.515], [37.748, -122.507], [37.723, -122.472], [37.708, -122.443], [37.738, -122.402], [37.772, -122.407], [37.805, -122.43], [37.835, -122.51]], radius, cx, cy);
-  const shade = cityCtx.createLinearGradient(cx - radius, cy, cx + radius, cy);
-  shade.addColorStop(0, 'rgba(0, 0, 0, .68)'); shade.addColorStop(.48, 'rgba(0, 0, 0, .03)'); shade.addColorStop(1, 'rgba(0, 4, 12, .32)');
-  cityCtx.fillStyle = shade; cityCtx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2); cityCtx.restore();
-  cityCtx.beginPath(); cityCtx.arc(cx, cy, radius, 0, Math.PI * 2); cityCtx.strokeStyle = 'rgba(127, 226, 255, .74)'; cityCtx.lineWidth = 1.3; cityCtx.shadowColor = '#6ce5ff'; cityCtx.shadowBlur = 12; cityCtx.stroke(); cityCtx.shadowBlur = 0;
-  cityMarkerPositions = [];
-  activeStory.cityPoints.forEach((cityPointData, index) => {
-    const p = cityPoint(cityPointData.lat, cityPointData.lon, radius, cx, cy);
-    if (p.z < -.03) return;
-    const pulse = 3.2 + (Math.sin(now * .003 + index) + 1) * 1.7;
-    cityCtx.beginPath(); cityCtx.arc(p.x, p.y, pulse, 0, Math.PI * 2); cityCtx.fillStyle = '#bdf9ff'; cityCtx.shadowColor = '#75eeff'; cityCtx.shadowBlur = 15; cityCtx.fill(); cityCtx.shadowBlur = 0;
-    cityCtx.fillStyle = 'rgba(201, 248, 255, .84)'; cityCtx.font = '7px "DM Mono", monospace'; cityCtx.fillText(cityPointData.label, p.x + 8, p.y - 7);
-    cityMarkerPositions.push({ ...cityPointData, x: p.x, y: p.y });
-  });
 }
 
 async function loadLandContours() {
@@ -393,7 +364,6 @@ function draw(now = 0) {
   const planet = drawGlobe(width, height, now);
   drawAtmosphericGlint(planet, now);
   drawStoryPoints(planet, now);
-  drawCityGlobe(now);
   requestAnimationFrame(draw);
 }
 
@@ -416,6 +386,7 @@ const storyImageFrame = document.querySelector('#story-image-frame');
 const storyBody = document.querySelector('#story-body');
 const storyTags = document.querySelector('#story-tags');
 const moreButton = document.querySelector('#more-button');
+const savedListLink = document.querySelector('#saved-list-link');
 const galleryView = document.querySelector('#gallery-view');
 const galleryBack = document.querySelector('#gallery-back');
 const galleryKicker = document.querySelector('#gallery-kicker');
@@ -437,8 +408,10 @@ function openStory(story) {
   storyTitle.textContent = story.name;
   storyBody.textContent = story.body || '';
   storyBody.hidden = !story.body;
-  cityGlobeModule.hidden = true;
   moreButton.hidden = !story.gallery?.length;
+  savedListLink.hidden = !story.savedListUrl;
+  if (story.savedListUrl) savedListLink.href = story.savedListUrl;
+  else savedListLink.removeAttribute('href');
   storyTags.replaceChildren(...story.tags.map((tag) => { const label = document.createElement('span'); label.textContent = tag; return label; }));
   if (story.cover) showStoryImage(story);
   else { storyImageFrame.hidden = true; storyImage.removeAttribute('src'); }
@@ -450,9 +423,6 @@ function openGallery() {
   if (!activeStory?.gallery?.length) return;
   galleryKicker.textContent = `${activeStory.country} / ${activeStory.timestamp || ''}`;
   galleryTitle.textContent = activeStory.name;
-  cityGlobeModule.hidden = !activeStory.cityPoints?.length;
-  cityGlobeStatus.textContent = 'ROTATE · SELECT A LIGHT';
-  cityGlobePreview.hidden = true;
   galleryGrid.replaceChildren(...activeStory.gallery.map((source, index) => {
     const caption = activeStory.captions?.[source];
     const figure = document.createElement('figure');
@@ -479,8 +449,6 @@ function closeGallery() {
   galleryView.classList.remove('open'); galleryView.setAttribute('aria-hidden', 'true');
   galleryView.classList.remove('is-scrolled'); galleryView.scrollTop = 0;
   document.body.classList.remove('gallery-open');
-  cityGlobeModule.hidden = true;
-  cityGlobePreview.hidden = true;
   if (activeStory) storyCard.classList.add('open');
 }
 moreButton.addEventListener('click', openGallery);
@@ -498,37 +466,6 @@ document.querySelectorAll('.timeline-item').forEach((item) => item.addEventListe
   const story = stories.find((candidate) => candidate.id === item.dataset.story);
   if (story) focusStory(story);
 }));
-
-function openCityPoint(cityPointData) {
-  if (!activeStory) return;
-  cityGlobeStatus.textContent = `OPEN: ${cityPointData.label}`;
-  cityGlobePreviewImage.src = cityPointData.source;
-  cityGlobePreviewImage.alt = `${cityPointData.label}, San Francisco`;
-  cityGlobePreviewCaption.textContent = activeStory.captions?.[cityPointData.source] || cityPointData.label;
-  cityGlobePreview.hidden = false;
-}
-
-cityCanvas.addEventListener('pointerdown', (event) => {
-  cityDragging = true;
-  cityLastX = event.clientX;
-  cityLastY = event.clientY;
-  cityCanvas.setPointerCapture(event.pointerId);
-});
-cityCanvas.addEventListener('pointermove', (event) => {
-  if (!cityDragging) return;
-  cityRotation += (event.clientX - cityLastX) * .012;
-  cityTilt = Math.max(-.8, Math.min(.8, cityTilt + (event.clientY - cityLastY) * .008));
-  cityLastX = event.clientX;
-  cityLastY = event.clientY;
-});
-cityCanvas.addEventListener('pointerup', (event) => {
-  const bounds = cityCanvas.getBoundingClientRect();
-  const x = event.clientX - bounds.left;
-  const y = event.clientY - bounds.top;
-  const hit = cityMarkerPositions.find((marker) => Math.hypot(marker.x - x, marker.y - y) < 22);
-  cityDragging = false;
-  if (hit) openCityPoint(hit);
-});
 
 shell.addEventListener('pointerdown', (event) => { dragging = true; lastX = event.clientX; lastY = event.clientY; shell.setPointerCapture(event.pointerId); });
 shell.addEventListener('pointermove', (event) => {
